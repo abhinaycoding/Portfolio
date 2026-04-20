@@ -8,7 +8,7 @@ const ACHIEVEMENTS = [
   {
     title: "Code League 1.0",
     category: "First Runner-Up",
-    date: "2024, 2026",
+    date: "2026",
     desc: "Secured 1st Runner-Up among 90+ teams at G H Raisoni College. Developed NyayMitra, an AI Legal platform, winning ₹25,000 scholarship, cash, and headphones.",
     image: "/images/codeleague.jpeg",
     icon: Trophy,
@@ -19,7 +19,7 @@ const ACHIEVEMENTS = [
   {
     title: "Tech-Xion",
     category: "Winners",
-    date: "2024, 2026",
+    date: "2026",
     desc: "Team OverClocked brought home the gold at Tech-Xion, showcasing high-speed innovation and system optimization.",
     slides: ["/images/Tech-Xion.jpeg", "/images/Tech-Xion%20trophy.jpeg"],
     icon: Award,
@@ -30,7 +30,7 @@ const ACHIEVEMENTS = [
   {
     title: "Hackbyte 4.0",
     category: "SpacetimeDB Honoree",
-    date: "2024, 2026",
+    date: "2026",
     desc: "Honored for competing and excelling in the SpacetimeDB track among a selective group of 40 specialized developers.",
     image: "/images/hackbyte.jpeg",
     icon: Zap,
