@@ -111,14 +111,7 @@ export default function HeroSequence() {
            className="w-24 h-1 bg-white/20 mt-16 mb-8 rounded-full"
         />
 
-        {/* Dynamic CTA */}
-        <motion.div
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="px-8 py-4 bg-white/5 border border-white/10 rounded-full text-[12px] font-bold tracking-[0.2em] uppercase text-white/40 hover:text-white hover:bg-white/10 transition-colors pointer-events-auto cursor-pointer"
-        >
-          View Explorations
-        </motion.div>
+
       </motion.div>
 
 

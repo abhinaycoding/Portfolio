@@ -7,7 +7,6 @@ import {
   Atom, 
   Triangle, 
   DraftingCompass, 
-  Palette, 
   Wind, 
   Zap, 
   Boxes, 
@@ -20,43 +19,47 @@ import {
   CreditCard,
   Code2,
   Terminal,
-  Cpu as Processor,
-  Layers
+  Layers,
+  Globe,
+  Link,
+  RotateCcw,
+  Smartphone
 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const STACK = [
   {
-    category: "Frontend", color: "bg-[#00E5FF]",
+    category: "FRONTEND", color: "bg-[#00E5FF]",
     items: [
-      { name: "React", icon: Atom, proficiency: 95, featured: true, description: "Declarative, component-based UI engineering." },
+      { name: "React", icon: Atom, proficiency: 95, featured: true, description: "Component-driven UI architecture & state management." },
       { name: "Next.js", icon: Triangle, proficiency: 92, featured: false },
-      { name: "TypeScript", icon: Code2, proficiency: 90, featured: false },
-      { name: "Tailwind", icon: Wind, proficiency: 95, featured: false },
-      { name: "Framer Motion", icon: Zap, proficiency: 88, featured: false },
+      { name: "JavaScript", icon: Code2, proficiency: 94, featured: false },
+      { name: "TypeScript", icon: ShieldCheck, proficiency: 88, featured: false },
+      { name: "Tailwind CSS", icon: Wind, proficiency: 95, featured: false },
+      { name: "Responsive UI", icon: Smartphone, proficiency: 96, featured: true, description: "Fluid, mobile-first design systems across all devices." },
+      { name: "Animations", icon: Zap, proficiency: 90, featured: false },
       { name: "GSAP", icon: DraftingCompass, proficiency: 85, featured: false },
-      { name: "Three.js", icon: Boxes, proficiency: 75, featured: true, description: "High-performance 3D web experiences." },
     ],
   },
   {
-    category: "Backend", color: "bg-[#FF3CAC]",
+    category: "PRODUCT & INTEGRATION", color: "bg-[#FF3CAC]",
     items: [
-      { name: "Node.js", icon: Server, proficiency: 88, featured: true, description: "Scalable server-side runtime for high-load apps." },
-      { name: "Express", icon: Terminal, proficiency: 90, featured: false },
-      { name: "Prisma", icon: Layers, proficiency: 85, featured: false },
-      { name: "GraphQL", icon: Cpu, proficiency: 80, featured: false },
-      { name: "Auth / JWT", icon: ShieldCheck, proficiency: 88, featured: false },
+      { name: "Firebase Auth", icon: ShieldCheck, proficiency: 90, featured: true, description: "Secure user authentication & session management." },
+      { name: "Firestore", icon: Database, proficiency: 88, featured: false },
+      { name: "API Integration", icon: Link, proficiency: 92, featured: false },
+      { name: "Payment Flows", icon: CreditCard, proficiency: 85, featured: false },
+      { name: "AI Workflows", icon: Zap, proficiency: 82, featured: true, description: "Automated AI toolchains & intelligent feature integration." },
+      { name: "SaaS Features", icon: Box, proficiency: 88, featured: false },
+      { name: "Iteration", icon: RotateCcw, proficiency: 90, featured: false },
     ],
   },
   {
-    category: "Database & Infrastructure", color: "bg-[#39FF14]",
+    category: "TOOLS", color: "bg-[#39FF14]",
     items: [
-      { name: "PostgreSQL", icon: Database, proficiency: 85, featured: true, description: "Relational data modeling & optimization." },
-      { name: "Redis", icon: Zap, proficiency: 78, featured: false },
-      { name: "Firebase", icon: Flame, proficiency: 88, featured: false },
-      { name: "Docker", icon: Box, proficiency: 75, featured: false },
-      { name: "Stripe", icon: CreditCard, proficiency: 85, featured: false },
+      { name: "GitHub", icon: Code2, proficiency: 92, featured: true, description: "Advanced version control & collaborative workflows." },
+      { name: "Vercel", icon: Globe, proficiency: 95, featured: false },
+      { name: "AI Dev", icon: Zap, proficiency: 90, featured: false },
     ],
   },
 ];

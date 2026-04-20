@@ -130,6 +130,20 @@ const PIXEL_MAP = {
     [1, 0, 0, 0],
     [1, 1, 1, 1],
   ],
+  W: [
+    [1, 0, 0, 0, 1],
+    [1, 0, 0, 0, 1],
+    [1, 0, 1, 0, 1],
+    [1, 1, 0, 1, 1],
+    [1, 0, 0, 0, 1],
+  ],
+  V: [
+    [1, 0, 0, 0, 1],
+    [1, 0, 0, 0, 1],
+    [0, 1, 0, 1, 0],
+    [0, 1, 0, 1, 0],
+    [0, 0, 1, 0, 0],
+  ],
 }
 
 interface Pixel {
@@ -187,7 +201,7 @@ export default function PromptingIsAllYouNeed() {
 
       pixelsRef.current = []
       // Name integration as requested
-      const words = ["ABHINAY", "ENGINEER"]
+      const words = ["ABHINAY", "MODERN WEB DEVELOPER"]
 
       const calculateWordWidth = (word: string, pixelSize: number) => {
         return (

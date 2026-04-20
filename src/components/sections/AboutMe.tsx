@@ -221,7 +221,7 @@ function PortraitCard3D({ imageScale }: { imageScale: any }) {
                 <p className="font-['Fredoka',sans-serif] font-black text-3xl text-black uppercase tracking-widest">
                     ABHINAY 👾
                 </p>
-                <p className="text-black/60 font-bold text-sm uppercase tracking-widest mt-1">PRODUCT ENGINEER</p>
+                <p className="text-black/60 font-bold text-sm uppercase tracking-widest mt-1">MODERN WEB DEVELOPER</p>
             </div>
 
             <motion.div 

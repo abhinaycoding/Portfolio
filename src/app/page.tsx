@@ -15,7 +15,9 @@ export default function Home() {
       <Navbar />
       <main className="relative bg-[#050505]">
         {/* The Rainbow Drip Backdrop - Restored as per the prompt */}
-        <DripBackdrop />
+        <div className="pointer-events-none fixed inset-0 z-0">
+           <DripBackdrop />
+        </div>
 
         <HeroSequence />
 
