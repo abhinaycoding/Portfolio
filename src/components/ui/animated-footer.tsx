@@ -23,12 +23,14 @@ const Footer: React.FC<FooterProps> = ({
   const footerRef = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [adaptiveBarCount, setAdaptiveBarCount] = useState(barCount);
+  const [isMounted, setIsMounted] = useState(false);
   const animationFrameRef = useRef<number | null>(null);
 
   // Use the established POP palette
   const POP_COLORS = ["#00E5FF", "#FFE234", "#39FF14", "#FF3CAC"];
 
   useEffect(() => {
+    setIsMounted(true);
     // Adaptive Scaling: Reduce complexity on mobile
     const handleResize = () => {
       const isMobile = window.innerWidth < 768;
@@ -198,7 +200,7 @@ const Footer: React.FC<FooterProps> = ({
                 transition: "transform 0.1s ease",
                 willChange: "transform",
                 marginTop: "-2px",
-                opacity: 0.8 + (Math.random() * 0.15) 
+                opacity: isMounted ? 0.8 + (Math.random() * 0.15) : 0.85
               }}
             />
           ))}

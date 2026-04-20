@@ -6,15 +6,48 @@ import Magnetic from "../Magnetic";
 
 const ACHIEVEMENTS = [
   {
-    title: "Code League 1.0",
-    category: "First Runner-Up",
-    date: "2024",
-    desc: "Secured 1st Runner-Up among 90+ teams at G H Raisoni College. Developed NyayMitra, an AI Legal platform, winning ₹25,000 scholarship, cash, and headphones.",
-    image: "/images/codeleague.jpeg",
+    title: "Hackmbyte 5.0",
+    category: "Winners",
+    date: "2026",
+    desc: "Achieved absolute dominance at Hackmbyte 5.0, securing the championship title with 'Nebula-X', a distributed AI orchestration engine.",
+    image: "/images/hackbyte.jpeg",
     icon: Trophy,
     color: "bg-[#FFE234]",
     aspect: "aspect-[16/10]",
     span: "md:col-span-8"
+  },
+  {
+    title: "Code League 2.0",
+    category: "First Runner-Up",
+    date: "2026",
+    desc: "Secured the silver spot among 120+ international teams. Developed a low-latency blockchain indexing protocol that outperformed 90% of the field.",
+    image: "/images/codeleague.jpeg",
+    icon: Award,
+    color: "bg-[#00E5FF]",
+    aspect: "aspect-square",
+    span: "md:col-span-4"
+  },
+  {
+    title: "Tech-Xion 2026",
+    category: "Winners",
+    date: "2026",
+    desc: "Defended the title at Tech-Xion 2026. Optimized high-concurrency systems to record-breaking levels of efficiency.",
+    slides: ["/images/Tech-Xion.jpeg", "/images/Tech-Xion%20trophy.jpeg"],
+    icon: Zap,
+    color: "bg-[#39FF14]",
+    aspect: "aspect-square",
+    span: "md:col-span-4"
+  },
+  {
+    title: "Code League 1.0",
+    category: "First Runner-Up",
+    date: "2024",
+    desc: "Secured 1st Runner-Up among 90+ teams at G H Raisoni College. Developed NyayMitra, an AI Legal platform, winning ₹25,000 scholarship.",
+    image: "/images/codeleague.jpeg",
+    icon: Trophy,
+    color: "bg-[#FF3CAC]",
+    aspect: "aspect-square",
+    span: "md:col-span-4"
   },
   {
     title: "Tech-Xion",
@@ -24,17 +57,6 @@ const ACHIEVEMENTS = [
     slides: ["/images/Tech-Xion.jpeg", "/images/Tech-Xion%20trophy.jpeg"],
     icon: Award,
     color: "bg-[#00E5FF]",
-    aspect: "aspect-square",
-    span: "md:col-span-4"
-  },
-  {
-    title: "Hackbyte 4.0",
-    category: "SpacetimeDB Honoree",
-    date: "2024",
-    desc: "Honored for competing and excelling in the SpacetimeDB track among a selective group of 40 specialized developers.",
-    image: "/images/hackbyte.jpeg",
-    icon: Zap,
-    color: "bg-[#FF3CAC]",
     aspect: "aspect-square",
     span: "md:col-span-4"
   },
