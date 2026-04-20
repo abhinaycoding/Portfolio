@@ -7,6 +7,7 @@ const LINKS = [
   { label: "About", href: "#about", emoji: "👤" },
   { label: "Skills", href: "#skills", emoji: "🧠" },
   { label: "Projects", href: "#projects", emoji: "🚀" },
+  { label: "Resume", href: "/resume.pdf", emoji: "📄" },
   { label: "Contact", href: "#contact", emoji: "💬" },
 ];
 

@@ -241,21 +241,17 @@ export default function Hero() {
           </motion.button>
 
           <motion.a
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.05, rotate: 1 }}
             whileTap={{ scale: 0.95 }}
             href="/resume.pdf"
             download
-            className="px-8 py-4 rounded-full font-semibold flex items-center gap-2 group"
-            style={{
-              background: "rgba(17,17,32,0.8)",
-              border: "1px solid rgba(99,102,241,0.3)",
-              color: "var(--text-primary)",
-            }}
+            className="px-10 py-4 bg-[#FFE234] border-[4px] border-black rounded-full shadow-[6px_6px_0_0_#000] font-black uppercase italic tracking-tighter text-black flex items-center gap-3 transition-transform"
+            style={{ fontFamily: "'Fredoka', sans-serif" }}
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
               <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
             </svg>
-            Download Resume
+            GET RESUME
           </motion.a>
         </motion.div>
 
