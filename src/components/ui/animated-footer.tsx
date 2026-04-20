@@ -17,23 +17,33 @@ const Footer: React.FC<FooterProps> = ({
   leftLinks,
   rightLinks,
   copyrightText,
-  barCount = 32, 
+  barCount = 48, 
 }) => {
   const waveRefs = useRef<(HTMLDivElement | null)[]>([]);
   const footerRef = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [adaptiveBarCount, setAdaptiveBarCount] = useState(barCount);
   const animationFrameRef = useRef<number | null>(null);
 
   // Use the established POP palette
   const POP_COLORS = ["#00E5FF", "#FFE234", "#39FF14", "#FF3CAC"];
 
   useEffect(() => {
+    // Adaptive Scaling: Reduce complexity on mobile
+    const handleResize = () => {
+      const isMobile = window.innerWidth < 768;
+      setAdaptiveBarCount(isMobile ? Math.min(24, barCount) : barCount);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
         setIsVisible(entry.isIntersecting);
       },
-      { threshold: 0.1 } 
+      { threshold: 0.05 } 
     );
 
     if (footerRef.current) {
@@ -41,34 +51,44 @@ const Footer: React.FC<FooterProps> = ({
     }
 
     return () => {
+      window.removeEventListener("resize", handleResize);
       if (footerRef.current) {
         observer.unobserve(footerRef.current);
       }
     };
-  }, []);
+  }, [barCount]);
 
 
   useEffect(() => {
     let t = 0; 
+    let lastTime = 0;
 
-    const animateWave = () => {
+    const animateWave = (timestamp: number) => {
+      // Throttle to 60fps if possible, but keep it smooth
+      if (timestamp - lastTime < 16) {
+        animationFrameRef.current = requestAnimationFrame(animateWave);
+        return;
+      }
+      lastTime = timestamp;
+
       const waveElements = waveRefs.current;
       let offset = 0;
 
-      waveElements.forEach((element, index) => {
+      for (let i = 0; i < adaptiveBarCount; i++) {
+        const element = waveElements[i];
         if (element) {
-          // Increased amplitude and frequency for a more "Aggressive" POP feel
-          offset += Math.max(0, 30 * Math.sin((t + index) * 0.4)); 
-          element.style.transform = `translateY(${index + offset}px)`;
+          offset += Math.max(0, 25 * Math.sin((t + i) * 0.35)); 
+          // Use translate3d for GPU acceleration
+          element.style.transform = `translate3d(0, ${i + offset}px, 0)`;
         }
-      });
+      }
 
-      t += 0.08;
+      t += 0.07;
       animationFrameRef.current = requestAnimationFrame(animateWave);
     };
 
     if (isVisible) {
-      animateWave();
+      animationFrameRef.current = requestAnimationFrame(animateWave);
     } else if (animationFrameRef.current) {
       cancelAnimationFrame(animationFrameRef.current);
       animationFrameRef.current = null;
@@ -80,7 +100,7 @@ const Footer: React.FC<FooterProps> = ({
         animationFrameRef.current = null;
       }
     };
-  }, [isVisible]);
+  }, [isVisible, adaptiveBarCount]);
 
   return (
     <footer
@@ -90,12 +110,12 @@ const Footer: React.FC<FooterProps> = ({
       <div className="container mx-auto flex flex-col md:flex-row justify-between w-full gap-12 pb-32 pt-16 px-6 md:px-10 lg:px-16 relative z-20">
         
         <div className="space-y-6">
-          <ul className="flex flex-wrap gap-8">
+          <ul className="flex flex-wrap gap-8 text-white/50">
             {leftLinks.map((link, index) => (
               <li key={index}>
                 <a 
                   href={link.href} 
-                  className="text-sm font-black uppercase tracking-widest hover:text-[#00E5FF] transition-colors"
+                  className="text-sm font-black uppercase tracking-widest hover:text-[#00E5FF] transition-all duration-300 transform-gpu hover:scale-105 inline-block"
                   style={{ fontFamily: "'Fredoka', sans-serif" }}
                 >
                   {link.label}
@@ -114,8 +134,8 @@ const Footer: React.FC<FooterProps> = ({
                </span>
             </div>
             
-            <p className="text-xs font-bold text-white/40 uppercase tracking-[0.3em] flex items-center gap-x-3">
-              <svg className="w-4 h-4 text-[#FFE234]" viewBox="0 0 80 80">
+            <p className="text-[10px] font-bold text-white/20 uppercase tracking-[0.3em] flex items-center gap-x-3">
+              <svg className="w-3 h-3 text-[#FFE234]/50" viewBox="0 0 80 80">
                 <path
                   fillRule="evenodd"
                   clipRule="evenodd"
@@ -134,7 +154,7 @@ const Footer: React.FC<FooterProps> = ({
               <li key={index}>
                 <a 
                   href={link.href} 
-                  className="text-sm font-black uppercase tracking-widest hover:text-[#39FF14] transition-colors"
+                  className="text-sm font-black uppercase tracking-widest text-white/50 hover:text-[#39FF14] transition-all duration-300 transform-gpu hover:scale-105 inline-block"
                   style={{ fontFamily: "'Fredoka', sans-serif" }}
                 >
                   {link.label}
@@ -146,13 +166,13 @@ const Footer: React.FC<FooterProps> = ({
           <div className="flex items-center gap-6">
             <button 
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="text-xs font-black uppercase tracking-widest text-[#00E5FF] hover:underline"
+              className="text-[10px] font-black uppercase tracking-widest text-[#00E5FF] hover:underline"
               style={{ fontFamily: "'Fredoka', sans-serif" }}
             >
               Back to top ↑
             </button>
-            <div className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-white/40">
-              Machine Optimized
+            <div className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-[9px] font-black uppercase tracking-[0.2em] text-white/20">
+              GPU ACCELERATED
             </div>
           </div>
         </div>
@@ -165,7 +185,7 @@ const Footer: React.FC<FooterProps> = ({
         style={{ overflow: "hidden", height: 260 }}
       >
         <div style={{ marginTop: 0 }}>
-          {Array.from({ length: barCount }).map((_, index) => (
+          {Array.from({ length: adaptiveBarCount }).map((_, index) => (
             <div
               key={index}
               ref={(el) => { waveRefs.current[index] = el; }}
@@ -178,7 +198,7 @@ const Footer: React.FC<FooterProps> = ({
                 transition: "transform 0.1s ease",
                 willChange: "transform",
                 marginTop: "-2px",
-                opacity: 0.8 + (Math.random() * 0.2) // Slight flicker effect for the glowing tubes
+                opacity: 0.8 + (Math.random() * 0.15) 
               }}
             />
           ))}

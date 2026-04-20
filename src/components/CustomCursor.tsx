@@ -62,16 +62,16 @@ export default function CustomCursor() {
       {/* Core dot */}
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 z-[9998] w-2 h-2 rounded-full pointer-events-none transition-transform duration-75"
-        style={{ background: "linear-gradient(135deg, #60a5fa, #a78bfa)" }}
+        className="fixed top-0 left-0 z-[9998] w-2 h-2 rounded-full pointer-events-none"
+        style={{ background: "linear-gradient(135deg, #00E5FF, #FFE234)" }}
       />
       {/* Trailing ring */}
       <div
         ref={ringRef}
-        className="fixed top-0 left-0 z-[9997] w-10 h-10 rounded-full pointer-events-none border transition-transform duration-100 transition-opacity duration-200"
+        className="fixed top-0 left-0 z-[9997] w-10 h-10 rounded-full pointer-events-none border"
         style={{
-          border: "1px solid rgba(139, 92, 246, 0.5)",
-          boxShadow: "0 0 10px rgba(139, 92, 246, 0.2), inset 0 0 10px rgba(59, 130, 246, 0.1)",
+          border: "1px solid rgba(0, 229, 255, 0.5)",
+          boxShadow: "0 0 10px rgba(0, 229, 255, 0.2), inset 0 0 10px rgba(255, 226, 52, 0.1)",
         }}
       />
     </>
