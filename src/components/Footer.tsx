@@ -30,8 +30,8 @@ export default function Footer() {
         {/* Center: Socials */}
         <div className="flex flex-wrap justify-center gap-6">
             {[
-              { label: "GITHUB", href: "https://github.com/abhinay", color: "hover:text-[#00E5FF]" },
-              { label: "LINKEDIN", href: "https://linkedin.com/in/abhinay", color: "hover:text-[#FF3CAC]" },
+              { label: "GITHUB", href: "https://github.com/abhinaycoding", color: "hover:text-[#00E5FF]" },
+              { label: "LINKEDIN", href: "https://linkedin.com/in/abhinay-nachankar-36b3a7223/", color: "hover:text-[#FF3CAC]" },
               { label: "RESUME", href: "/resume.pdf", color: "hover:text-[#39FF14]" },
             ].map((link) => (
               <a

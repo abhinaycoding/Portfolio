@@ -29,10 +29,10 @@ const CustomIcons = {
 };
 
 const SOCIALS = [
-  { label: "Email", href: "mailto:hello@abhinay.dev", display: "hello@abhinay.dev", icon: Mail },
-  { label: "GitHub", href: "https://github.com/abhinay", display: "github.com/abhinay", icon: CustomIcons.Github },
-  { label: "LinkedIn", href: "https://linkedin.com/in/abhinay", display: "linkedin.com/in/abhinay", icon: CustomIcons.Linkedin },
-  { label: "Social", href: "https://instagram.com/abhinay", display: "@abhinay", icon: CustomIcons.Instagram },
+  { label: "Email", href: "mailto:abhinaycoding@gmail.com", display: "abhinaycoding@gmail.com", icon: Mail },
+  { label: "GitHub", href: "https://github.com/abhinaycoding", display: "github.com/abhinaycoding", icon: CustomIcons.Github },
+  { label: "LinkedIn", href: "https://linkedin.com/in/abhinay-nachankar-36b3a7223/", display: "linkedin.com/abhinay-nachankar", icon: CustomIcons.Linkedin },
+  { label: "Social", href: "https://instagram.com/abhi.nft", display: "@abhi.nft", icon: CustomIcons.Instagram },
 ];
 
 export default function Contact() {
@@ -68,7 +68,7 @@ export default function Contact() {
                 
                 <div className="shrink-0">
                     <Magnetic>
-                        <a href="mailto:hello@abhinay.dev" className="inline-flex items-center gap-4 px-10 py-5 bg-[#FFE234] text-black text-xl font-black uppercase rounded-full hover:scale-105 transition-transform group">
+                        <a href="mailto:abhinaycoding@gmail.com" className="inline-flex items-center gap-4 px-10 py-5 bg-[#FFE234] text-black text-xl font-black uppercase rounded-full hover:scale-105 transition-transform group">
                            Contact Me <Zap className="w-5 h-5 fill-current group-hover:animate-bounce" />
                         </a>
                     </Magnetic>

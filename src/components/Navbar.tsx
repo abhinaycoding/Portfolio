@@ -67,7 +67,7 @@ export default function Navbar() {
             <div className={`w-[3px] h-6 mx-2 ${scrolled ? "bg-black" : "bg-white/20"}`} />
             <Magnetic>
               <motion.a
-                href="mailto:hello@abhinay.dev"
+                href="mailto:abhinaycoding@gmail.com"
                 whileHover={{ scale: 1.05, rotate: -2 }}
                 className="ml-2 px-6 py-2.5 bg-[#FFE234] text-black border-[3px] border-black rounded-full font-black text-sm uppercase shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000] transition-all"
               >
@@ -121,7 +121,7 @@ export default function Navbar() {
               </motion.a>
             ))}
             <motion.a
-              href="mailto:hello@abhinay.dev"
+              href="mailto:abhinaycoding@gmail.com"
               className="mt-10 px-10 py-5 bg-white border-[4px] border-black rounded-full font-black text-2xl uppercase shadow-[10px_10px_0_0_#000]"
             >
               Contact Me!
