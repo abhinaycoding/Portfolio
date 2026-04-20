@@ -110,23 +110,7 @@ export default function AboutMe() {
             </div>
 
             {/* ─── WHAT I BRING MATRIX ─── */}
-            <div className="mt-10 relative">
-                {/* Mario Easter Egg Track */}
-                <div className="absolute bottom-[32px] left-0 right-0 h-8 pointer-events-none overflow-hidden z-20">
-                    <motion.img 
-                        src="https://media.giphy.com/media/LUIvCBpmlnA88/giphy.gif" 
-                        alt="Running Mario"
-                        className="h-8 w-auto absolute bottom-0"
-                        initial={{ left: "-50px" }}
-                        animate={{ left: "100%" }}
-                        transition={{ 
-                            duration: 12, 
-                            repeat: Infinity, 
-                            ease: "linear"
-                        }}
-                    />
-                </div>
-                
+            <div className="mt-10">
                 <h3 className="text-white/40 text-xs font-black uppercase tracking-[0.4em] mb-8 border-b border-white/10 pb-4">What I Bring</h3>
                 <div className="bring-grid grid grid-cols-1 md:grid-cols-2 gap-4">
                     {WHAT_I_BRING.map((item, i) => (
