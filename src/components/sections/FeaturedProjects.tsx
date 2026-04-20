@@ -8,15 +8,15 @@ gsap.registerPlugin(ScrollTrigger);
 
 const PROJECTS = [
   {
-    title: "Billing SaaS",
-    subtitle: "Real-time Financial Infrastructure",
-    desc: "High-performance billing engine with multi-tenant scalability, sub-second transaction processing, and enterprise-grade reliability.",
-    tech: ["Next.js", "Prisma", "Redis", "Stripe"],
-    metrics: ["99.9% Uptime", "250ms P95"],
+    title: "YatraSathi",
+    subtitle: "AI-Powered Real Estate Ecosystem",
+    desc: "A commute-first platform solving urban housing through AI feasibility scoring, Mapbox 3D context, and MetaMask-based blockchain verification for bulletproof listing trust.",
+    tech: ["Next.js", "MetaMask", "Mapbox", "AI Scoring"],
+    metrics: ["Blockchain Verified", "AI Scored"],
     year: "2024",
     link: "#",
-    color: "bg-[#00E5FF]",
-    icon: "💳"
+    color: "bg-[#FFE234]",
+    icon: "🏠"
   },
   {
     title: "AI Orchestrator",
@@ -81,9 +81,9 @@ export default function FeaturedProjects() {
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16 relative z-10">
 
         {/* ── Header ── */}
-        <div className="mb-20 flex flex-col md:flex-row md:items-end md:justify-between gap-12">
+        <div className="mb-24 lg:mb-40 flex flex-col md:flex-row md:items-end md:justify-between gap-12">
           <div>
-            <div className="w-fit px-6 py-2 bg-[#39FF14] border-[4px] border-black rounded-full shadow-[6px_6px_0_0_#000] rotate-[-1deg] mb-10">
+            <div className="w-fit px-6 py-2 bg-[#39FF14] border-[4px] border-black rounded-full shadow-[6px_6px_0_0_#000] rotate-[-1deg] mb-12">
               <span className="text-sm font-black tracking-[0.2em] uppercase text-black block">
                 MY WORK 🚀
               </span>
@@ -96,11 +96,11 @@ export default function FeaturedProjects() {
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.8, delay: i * 0.1 }}
                     viewport={{ once: true }}
-                    className="text-4xl md:text-6xl lg:text-[5.5rem] font-black leading-[0.9] tracking-tight uppercase"
+                    className="text-4xl md:text-6xl lg:text-[6.5rem] font-black leading-[0.9] tracking-tight uppercase"
                     style={{ 
                       fontFamily: "'Fredoka', sans-serif",
                       WebkitTextStroke: "2px white",
-                      textShadow: "8px 8px 0 black"
+                      textShadow: "10px 10px 0 black"
                     }}
                   >
                     {line}
@@ -114,19 +114,19 @@ export default function FeaturedProjects() {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4 }}
             viewport={{ once: true }}
-            className="text-white/60 text-lg max-w-[280px] leading-[1.6] font-bold italic"
+            className="text-white/60 text-lg lg:text-xl max-w-[320px] leading-[1.6] font-bold italic border-l-4 border-[#FF3CAC] pl-6"
           >
             A curated selection of high-energy products I&apos;ve built and shipped to the world.
           </motion.p>
         </div>
 
         {/* ── Project Rows ── */}
-        <div className="space-y-8">
+        <div className="space-y-12 md:space-y-20 lg:space-y-24">
           {PROJECTS.map((project, i) => (
             <ProjectRow key={i} project={project} index={i} />
           ))}
           {/* Final bottom divider */}
-          <div className="pop-divider opacity-20" />
+          <div className="pop-divider opacity-20 mt-20" />
         </div>
       </div>
     </section>
@@ -143,15 +143,22 @@ function ProjectRow({ project, index }: { project: (typeof PROJECTS)[0]; index: 
       ref={rowRef}
       href={project.link}
       style={{ rotate: rotateValue }}
-      whileHover={{ y: -8, scale: 1.02 }}
+      whileHover={{ y: -24, scale: 1.1, rotate: 0, zIndex: 50 }}
+      transition={{ type: "spring", stiffness: 400, damping: 20 }}
       className="project-row group block relative"
     >
-      <div className={`pop-card p-8 md:p-10 border-[4px] border-black shadow-[10px_10px_0_0_#000] bg-white transition-all cursor-pointer overflow-hidden`}>
+      {/* Extreme Shadow Layer */}
+      <div className="absolute inset-0 bg-black notch-card translate-x-2 translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-6 group-hover:translate-y-6 transition-all duration-300" />
+      
+      <div className={`relative notch-card p-8 md:p-12 border-[4px] border-black bg-white transition-all cursor-pointer overflow-hidden`}>
         
+        {/* Halftone Texture Overlay on Hover */}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-[0.07] pointer-events-none bg-[radial-gradient(#000_1.5px,transparent_1.5px)] bg-[length:6px_6px] transition-opacity duration-300" />
+
         {/* Shine spot */}
         <div className="absolute top-4 left-6 w-20 h-4 bg-black/10 rounded-full rotate-[-4deg]" />
 
-        <div className="flex flex-col lg:flex-row lg:items-center gap-8 relative z-10">
+        <div className="flex flex-col lg:flex-row lg:items-center gap-10 relative z-10">
 
           {/* Index + Emoji */}
           <div className="flex items-center gap-6 shrink-0">

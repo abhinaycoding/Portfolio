@@ -1,16 +1,22 @@
 "use client";
 import { useRef, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const METRICS = [
-  { value: "3+", label: "Years Building", bg: "bg-[#00E5FF]" },
-  { value: "12+", label: "Products Shipped", bg: "#FF3CAC" },
-  { value: "99.9%", label: "Uptime Standard", bg: "#39FF14" },
-  { value: "<300ms", label: "Avg Latency", bg: "#FFE234" },
+  { value: "1.5", label: "Years of Development", bg: "bg-[#FFE234]" },
+];
+
+const WHAT_I_BRING = [
+  { title: "Modern Frontend", desc: "Development with React / Next.js", bg: "bg-[#00E5FF]", color: "text-black" },
+  { title: "Vibe-Coded UI", desc: "Strong visual taste & aesthetic", bg: "bg-[#FF3CAC]", color: "text-white" },
+  { title: "Smooth Motion", desc: "Interaction & interaction design", bg: "bg-[#39FF14]", color: "text-black" },
+  { title: "Product Thinking", desc: "Product-first engineering mindset", bg: "bg-[#FFE234]", color: "text-black" },
+  { title: "Performance", desc: "Optimized, performance-focused builds", bg: "bg-[#BF5AF2]", color: "text-white" },
+  { title: "Execution", desc: "Fast execution & learning mindset", bg: "bg-[#FF6B00]", color: "text-white" },
 ];
 
 export default function AboutMe() {
@@ -21,131 +27,213 @@ export default function AboutMe() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      gsap.from(".bring-card", {
+        scrollTrigger: { trigger: ".bring-grid", start: "top 85%" },
+        y: 40, opacity: 0, scale: 0.9, stagger: 0.1, duration: 0.8, ease: "power4.out",
+      });
       gsap.from(".metric-card", {
-        scrollTrigger: { trigger: ".metrics-row", start: "top 85%" },
-        y: 40, opacity: 0, scale: 0.5, stagger: 0.12, duration: 0.8, ease: "back.out(1.7)",
+        scrollTrigger: { trigger: ".metrics-row", start: "top 95%" },
+        scale: 0.8, opacity: 0, stagger: 0.1, duration: 0.6, ease: "back.out(1.7)"
       });
     }, sectionRef);
     return () => ctx.revert();
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="relative py-32 md:py-48 lg:py-56 overflow-hidden">
+    <section id="about" ref={sectionRef} className="relative py-32 md:py-48 lg:py-64 overflow-hidden bg-[#050505]">
 
-      {/* ── Section separator ── */}
-      <div className="absolute top-0 left-0 right-0 h-4 bg-gradient-to-r from-transparent via-[#FFE234]/30 to-transparent" />
-      <div className="pop-divider absolute top-4 left-0 right-0 opacity-20" />
+      {/* ── Background Elements ── */}
+      <div className="absolute w-[900px] h-[900px] bg-[#00E5FF]/[0.15] rounded-full blur-[180px] pointer-events-none -top-60 -right-60 z-0" />
+      <div className="absolute w-[700px] h-[700px] bg-[#FF3CAC]/[0.1] rounded-full blur-[180px] pointer-events-none -bottom-60 -left-60 z-0" />
 
-      {/* Background colorful blooms - BOOSTED */}
-      <div className="absolute w-[900px] h-[900px] bg-[#00E5FF]/[0.35] rounded-full blur-[180px] pointer-events-none -top-60 -right-60 z-0" />
-      <div className="absolute w-[700px] h-[700px] bg-[#FF3CAC]/[0.3] rounded-full blur-[180px] pointer-events-none -bottom-60 -left-60 z-0" />
+      <div className="max-w-[1240px] mx-auto px-6 md:px-10 lg:px-16 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
 
-      <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
+          {/* ── LEFT: PORTRAIT ── */}
+          <div className="lg:col-span-5 relative">
+            <motion.div style={{ y: parallaxY }} className="sticky top-32">
+                <PortraitCard3D imageScale={imageScale} />
+            </motion.div>
+          </div>
 
-          {/* ── Left: Portrait (5 cols) ── */}
-          <motion.div style={{ y: parallaxY }} className="relative lg:col-span-5">
-            <div className="pop-card bg-white p-4 rotate-[-3deg] hover:rotate-[2deg] transition-transform duration-500 max-w-[440px] mx-auto lg:mx-0 shadow-[20px_20px_0_0_#000]">
-              <div className="relative rounded-2xl overflow-hidden border-[4px] border-black bg-black aspect-[3/4]">
-                <motion.div style={{ scale: imageScale }} className="w-full h-full origin-center">
-                  <img
-                    src="/portrait.png"
-                    alt="Abhinay"
-                    className="w-full h-full object-cover grayscale-[0.2] contrast-[1.1]"
-                  />
-                </motion.div>
-                {/* Overlay dots for that comic feel */}
-                <div className="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#fff_1.5px,transparent_1.5px)] bg-[length:12px_12px]" />
-              </div>
-              
-              {/* Polaroid bottom */}
-              <div className="pt-6 pb-2 text-center">
-                <p className="font-['Fredoka',sans-serif] font-black text-3xl text-black uppercase tracking-widest">
-                  ABHINAY 👾
-                </p>
-                <p className="text-black/60 font-bold text-sm uppercase tracking-widest mt-1">PRODUCT ENGINEER</p>
-              </div>
-
-              {/* Status badge */}
-              <div className="absolute -bottom-6 -right-6 flex items-center gap-3 px-6 py-3 bg-[#39FF14] border-[4px] border-black rounded-full shadow-[6px_6px_0_0_#000] rotate-[5deg]">
-                <span className="w-3 h-3 rounded-full bg-black animate-pulse" />
-                <span className="text-sm font-black tracking-widest uppercase text-black">READY!</span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* ── Right: Content (7 cols) ── */}
-          <div className="lg:col-span-7 flex flex-col gap-10">
-
-            {/* Label */}
-            <div className="w-fit px-6 py-2 bg-[#00E5FF] border-[4px] border-black rounded-full shadow-[6px_6px_0_0_#000] -rotate-2">
-              <span className="text-sm font-black tracking-[0.2em] uppercase text-black block">
-                WHO AM I? ⚡
-              </span>
-            </div>
-
-            {/* Headline */}
-            <div className="space-y-2">
-              {["Engineering", "with obsessive", "precision."].map((line, i) => (
-                <div key={i} className="mask-line overflow-hidden">
-                  <motion.h2
-                    initial={{ x: -100, opacity: 0 }}
-                    whileInView={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.8, delay: i * 0.1, type: "spring" }}
+          {/* ── RIGHT: NARRATIVE ── */}
+          <div className="lg:col-span-7 flex flex-col gap-12">
+            
+            {/* Header */}
+            <div>
+                <motion.div 
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    className="text-4xl md:text-6xl lg:text-[4.8rem] font-black leading-[1.0] tracking-tight text-white uppercase italic"
-                    style={{ 
-                      fontFamily: "'Fredoka', sans-serif",
-                      WebkitTextStroke: "2px black",
-                      textShadow: "6px 6px 0 black"
-                    }}
-                  >
-                    {line}
-                  </motion.h2>
-                </div>
-              ))}
+                    className="w-fit px-6 py-2 bg-[#FFE234] border-[3px] border-black rounded-full shadow-[6px_6px_0_0_#000] -rotate-2 mb-6"
+                >
+                    <span className="text-sm font-black tracking-[0.2em] uppercase text-black block">Who am I?</span>
+                </motion.div>
+                <h2 className="text-5xl md:text-7xl font-black text-white leading-none uppercase italic tracking-tighter">
+                    ABHINAY
+                </h2>
             </div>
 
-            {/* Paragraphs */}
-            <div className="space-y-6 max-w-lg">
-                <motion.p
+            {/* Bio Paragraphs */}
+            <div className="space-y-8 text-white/80 text-lg md:text-xl font-medium leading-relaxed max-w-2xl">
+                <motion.p 
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
                     viewport={{ once: true }}
-                    className="text-lg md:text-xl text-white font-black leading-relaxed"
                 >
-                  I build <span className="bg-[#FF3CAC] px-2 border-[3px] border-black text-black">real products</span> with clean code and wildly expressive design intuition. Focused on shipping ideas that win.
+                    I’m a developer who enjoys <span className="text-white font-black italic underline decoration-[#00E5FF] decoration-4 underline-offset-4">modern vibe-coded development</span>—building products that feel fresh, interactive, and visually memorable while staying clean under the hood.
+                </motion.p>
+                <motion.p 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                    viewport={{ once: true }}
+                >
+                    My focus is creating websites and apps that combine strong UI design, smooth animations, responsive performance, and real usability. I like experiences that look <span className="text-white font-black">premium</span>, feel fast, and keep users engaged.
+                </motion.p>
+                <motion.p 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    viewport={{ once: true }}
+                >
+                    Beyond visuals, I care about solid engineering, scalable structure, and turning ideas into products people actually use.
+                </motion.p>
+                <motion.p 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    viewport={{ once: true }}
+                >
+                    I’m especially interested in the space where <span className="bg-[#39FF14] text-black px-2 py-0.5 font-bold italic">creativity meets code</span>—modern interfaces, product systems, and digital experiences that stand out.
                 </motion.p>
             </div>
 
-            {/* Divider */}
-            <div className="h-2 bg-black border-[3px] border-white/20 rounded-full w-40" />
-
-            {/* Metrics */}
-            <div className="metrics-row grid grid-cols-2 lg:grid-cols-4 gap-6">
-              {METRICS.map((m, i) => (
-                <div 
-                  key={i} 
-                  className={`metric-card group p-6 rounded-3xl border-[4px] border-black shadow-[8px_8px_0_0_#000] hover:scale-105 transition-transform duration-300 ${
-                    i % 4 === 0 ? "bg-[#00E5FF]" : i % 4 === 1 ? "bg-[#FF3CAC]" : i % 4 === 2 ? "bg-[#39FF14]" : "bg-[#FFE234]"
-                  }`}
-                >
-                  <div
-                    className="text-3xl font-black tracking-tighter text-black uppercase"
-                    style={{ fontFamily: "'Fredoka', sans-serif" }}
-                  >
-                    {m.value}
-                  </div>
-                  <div className="text-[10px] font-black tracking-widest uppercase text-black opacity-60 mt-1">
-                    {m.label}
-                  </div>
+            {/* ─── WHAT I BRING MATRIX ─── */}
+            <div className="mt-10">
+                <h3 className="text-white/40 text-xs font-black uppercase tracking-[0.4em] mb-8 border-b border-white/10 pb-4">What I Bring</h3>
+                <div className="bring-grid grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {WHAT_I_BRING.map((item, i) => (
+                        <div key={i} className="bring-card group relative">
+                            <div className="absolute inset-0 bg-black notch-card translate-x-1 translate-y-1" />
+                            <div className={`relative notch-card p-6 border-[3px] border-black h-full ${item.bg} ${item.color}`}>
+                                <h4 className="text-xl font-black uppercase leading-tight mb-2 italic">{item.title}</h4>
+                                <p className="text-xs font-bold opacity-80 uppercase tracking-wider">{item.desc}</p>
+                            </div>
+                        </div>
+                    ))}
                 </div>
-              ))}
             </div>
+
+            {/* ─── CORE STATS (METRICS) ─── */}
+            <div className="mt-16 pt-10 border-t border-white/5">
+                <div className="metrics-row">
+                    {METRICS.map((m, i) => (
+                        <div key={i} className="metric-card">
+                            <p className="text-white/30 text-xs font-black uppercase tracking-[0.4em] mb-3">{m.label}</p>
+                            <div className="flex items-center gap-4">
+                                <div className={`w-3 h-3 rounded-full ${m.bg} shadow-[0_0_15px_rgba(255,226,52,0.4)]`} />
+                                <span className="text-5xl font-black text-white italic tracking-tighter leading-none">{m.value} <span className="text-white/20 text-2xl not-italic ml-2">YEARS</span></span>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
           </div>
         </div>
       </div>
     </section>
   );
+}
+
+function PortraitCard3D({ imageScale }: { imageScale: any }) {
+    const cardRef = useRef<HTMLDivElement>(null);
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+
+    const mouseXSpring = useSpring(x);
+    const mouseYSpring = useSpring(y);
+
+    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], [15, -15]);
+    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], [-15, 15]);
+
+    // Shine/Shadow Parallax
+    const shineX = useTransform(mouseXSpring, [-0.5, 0.5], ["0%", "100%"]);
+    const shineY = useTransform(mouseYSpring, [-0.5, 0.5], ["0%", "100%"]);
+    const shadowX = useTransform(mouseXSpring, [-0.5, 0.5], [30, 10]);
+    const shadowY = useTransform(mouseYSpring, [-0.5, 0.5], [30, 10]);
+
+    function handleMouseMove(event: React.MouseEvent) {
+        if (!cardRef.current) return;
+        const rect = cardRef.current.getBoundingClientRect();
+        const mouseX = event.clientX - rect.left;
+        const mouseY = event.clientY - rect.top;
+        const xPct = mouseX / rect.width - 0.5;
+        const yPct = mouseY / rect.height - 0.5;
+        x.set(xPct);
+        y.set(yPct);
+    }
+
+    function handleMouseLeave() {
+        x.set(0);
+        y.set(0);
+    }
+
+    return (
+        <motion.div
+            ref={cardRef}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{ 
+                rotateX, 
+                rotateY, 
+                perspective: 1000,
+                boxShadow: useTransform(
+                    [shadowX, shadowY],
+                    ([sx, sy]) => `${sx}px ${sy}px 0px 0px #000`
+                )
+            }}
+            className="pop-card bg-white p-4 rotate-[-3deg] rounded-[2rem] border-[4px] border-black transition-shadow duration-300 max-w-[440px] mx-auto lg:mx-0 relative z-10 group"
+        >
+            <div className="relative rounded-2xl overflow-hidden border-[4px] border-black bg-black aspect-[3/4]">
+                <motion.div style={{ scale: imageScale }} className="w-full h-full origin-center">
+                    <img
+                        src="/portrait.png"
+                        alt="Abhinay"
+                        className="w-full h-full object-cover grayscale-[0.1] contrast-[1.1]"
+                    />
+                </motion.div>
+                
+                <motion.div 
+                    style={{ 
+                        left: shineX, 
+                        top: shineY,
+                        background: "radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 80%)" 
+                    }}
+                    className="absolute -inset-[100%] opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300 z-20"
+                />
+
+                <div className="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#fff_1.5px,transparent_1.5px)] bg-[length:12px_12px] z-10" />
+            </div>
+            
+            <div className="pt-6 pb-2 text-center relative z-20">
+                <p className="font-['Fredoka',sans-serif] font-black text-3xl text-black uppercase tracking-widest">
+                    ABHINAY 👾
+                </p>
+                <p className="text-black/60 font-bold text-sm uppercase tracking-widest mt-1">PRODUCT ENGINEER</p>
+            </div>
+
+            <motion.div 
+                style={{ 
+                    x: useTransform(mouseXSpring, [-0.5, 0.5], [10, -10]),
+                    y: useTransform(mouseYSpring, [-0.5, 0.5], [10, -10])
+                }}
+                className="absolute -bottom-6 -right-6 flex items-center gap-3 px-6 py-3 bg-[#39FF14] border-[4px] border-black rounded-full shadow-[6px_6px_0_0_#000] rotate-[5deg] z-30"
+            >
+                <span className="w-3 h-3 rounded-full bg-black animate-pulse" />
+                <span className="text-sm font-black tracking-widest uppercase text-black">READY!</span>
+            </motion.div>
+        </motion.div>
+    );
 }

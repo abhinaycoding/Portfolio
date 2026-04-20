@@ -139,21 +139,27 @@ export default function TechnicalSkills() {
               ))}
             </div>
 
-            {/* Tabs */}
-            <div className="flex flex-wrap gap-3">
+            {/* Tabs - Funny Buttons */}
+            <div className="flex flex-wrap gap-5">
               {STACK.map((s, i) => (
-                <button
+                <motion.button
                   key={i}
                   onClick={() => setActiveCategory(i)}
-                  className={`px-8 py-4 text-xs font-black tracking-widest uppercase rounded-2xl border-[4px] border-black shadow-[6px_6px_0_0_#000] transition-all hover:scale-105 active:scale-95 ${
+                  whileHover={{ scale: 1.05, rotate: i % 2 === 0 ? 1 : -1 }}
+                  whileTap={{ scale: 0.95, rotate: -2 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                  className={`relative notch-card px-8 lg:px-16 py-4 lg:py-10 text-sm lg:text-3xl font-black tracking-widest uppercase border-[5px] lg:border-[8px] border-black shadow-[8px_8px_0_0_#000] lg:shadow-[14px_14px_0_0_#000] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] transition-colors group ${
                     activeCategory === i
                       ? s.color + " text-black"
                       : "bg-white text-black"
                   }`}
                   style={{ fontFamily: "'Fredoka', sans-serif" }}
                 >
-                  {s.category}
-                </button>
+                  {/* Subtle Halftone Overlay on Hover */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-10 pointer-events-none bg-[radial-gradient(#000_1px,transparent_1px)] bg-[length:6px_6px]" />
+                  
+                  <span className="relative z-10">{s.category}</span>
+                </motion.button>
               ))}
             </div>
           </div>
