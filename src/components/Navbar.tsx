@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { motion, useScroll, AnimatePresence } from "framer-motion";
+import { Zap, Rocket } from "lucide-react";
 import Magnetic from "./Magnetic";
 
 const LINKS = [
