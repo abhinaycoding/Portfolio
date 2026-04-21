@@ -24,7 +24,7 @@ const PROJECTS = [
     desc: "Minimalism for the auditory obsessive. A high-performance podcast aggregation dashboard engineered with a brutalist, typography-first interface.",
     tech: ["React State", "Lucide", "Next.js", "Zustand"],
     metrics: ["Sub-second loads", "No Bloat"],
-    year: "2024",
+    year: "2026",
     link: "https://podstream-two.vercel.app/dashboard",
     color: "bg-[#FF3CAC]",
     icon: "🎙️"
@@ -35,7 +35,7 @@ const PROJECTS = [
     desc: "A digital product agency collective building the future of web experiences. High-fidelity branding meets sophisticated frontend engineering for the next generation of startups.",
     tech: ["GSAP", "Next.js", "WebGL Logic", "Premium UI"],
     metrics: ["Agency Grade", "Custom Motion"],
-    year: "2024",
+    year: "2026",
     link: "https://veltrixlabs.vercel.app/",
     color: "bg-[#39FF14]",
     icon: "⚡"
@@ -46,7 +46,7 @@ const PROJECTS = [
     desc: "Professional security infrastructure. Engineered for high-load operational monitoring, multi-layered defense coordination, and real-time response tracking.",
     tech: ["Vercel Edge", "Next.js", "Security Ops", "Scalable Systems"],
     metrics: ["Client Work", "Ops Ready"],
-    year: "2024",
+    year: "2026",
     link: "https://client-work-1-rose.vercel.app/",
     color: "bg-[#00E5FF]",
     icon: "🛡️"

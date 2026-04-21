@@ -45,7 +45,7 @@ export const DripBackdrop = () => {
               ease: "linear",
               delay: drip.delay,
             }}
-            className="absolute rounded-b-full translate-z-0"
+            className="absolute rounded-b-full transform-gpu"
             style={{
               left: drip.left,
               width: drip.width,
@@ -69,7 +69,7 @@ export const DripBackdrop = () => {
               ease: "linear",
               delay: drip.delay + 1,
             }}
-            className="absolute rounded-b-full translate-z-0"
+            className="absolute rounded-b-full transform-gpu"
             style={{
               left: `calc(${drip.left} + 10px)`,
               width: drip.width / 2,
