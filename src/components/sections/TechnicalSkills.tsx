@@ -96,29 +96,7 @@ export default function TechnicalSkills() {
   return (
     <section id="skills" ref={sectionRef} className="relative py-12 md:py-20 lg:py-24 overflow-hidden bg-transparent px-6 font-['Nunito',sans-serif]">
 
-      {/* ── Torn Paper Transition ── */}
-      <div className="absolute top-0 left-0 right-0 z-20 pointer-events-none -translate-y-[1px]">
-        <svg 
-            viewBox="0 0 1440 120" 
-            fill="none" 
-            preserveAspectRatio="none"
-            className="w-full h-[60px] md:h-[100px] drop-shadow-[0_10px_0_rgba(0,0,0,1)]"
-        >
-          <path 
-            d="M0 0H1440V60L1410 75L1380 50L1350 90L1320 65L1290 100L1260 70L1230 110L1200 80L1170 105L1140 70L1110 95L1080 60L1050 85L1020 55L990 100L960 70L930 115L900 80L870 105L840 65L810 95L780 60L750 90L720 70L690 105L660 80L630 100L600 70L570 95L540 65L510 110L480 80L450 105L420 75L390 100L360 70L330 95L300 60L270 90L240 70L210 105L180 80L150 100L120 70L90 95L60 65L30 105L0 70V0Z" 
-            fill="white" 
-            stroke="black" 
-            strokeWidth="8"
-          />
-          {/* Paper Texture Overlay */}
-          <rect width="1440" height="120" fill="url(#halftone-small)" opacity="0.1" />
-          <defs>
-            <pattern id="halftone-small" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
-              <circle cx="2" cy="2" r="1.5" fill="black" />
-            </pattern>
-          </defs>
-        </svg>
-      </div>
+      {/* ── Dynamic Paper Tear will be handled by the Transition component ── */}
 
       {/* Floating Industrial Stickers */}
       {hasMounted && FLOATING_STICKERS.map((s, i) => (
