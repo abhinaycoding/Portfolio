@@ -128,8 +128,11 @@ const Footer: React.FC<FooterProps> = ({
           </ul>
           
           <div className="pt-4">
-            <div className="flex items-center gap-2 mb-4">
-               <Logo className="w-10 h-10" scrolled={true} />
+            <div className="flex items-center gap-4 mb-4">
+               {/* Simple Industrial 'A' Mark */}
+               <div className="w-12 h-12 bg-[#FFE234] border-[4px] border-black rounded-xl flex items-center justify-center shadow-[6px_6px_0_0_#000] rotate-[-2deg]">
+                  <span className="text-2xl font-black text-black italic">A</span>
+               </div>
                <span className="text-xl font-black italic tracking-tighter uppercase leading-none">
                  ABHINAY — <span className="text-[#FFE234]">DEV</span>
                </span>
@@ -192,14 +195,15 @@ const Footer: React.FC<FooterProps> = ({
               ref={(el) => { waveRefs.current[index] = el; }}
               className="wave-segment"
               style={{
+                width: "100%",
                 height: `${index + 1}px`,
                 // Cycling through the POP palette
                 backgroundColor: POP_COLORS[index % POP_COLORS.length],
-                boxShadow: `0 0 20px ${POP_COLORS[index % POP_COLORS.length]}33`,
+                boxShadow: `0 0 20px ${POP_COLORS[index % POP_COLORS.length]}44`,
                 transition: "transform 0.1s ease",
                 willChange: "transform",
                 marginTop: "-2px",
-                opacity: isMounted ? 0.8 + (Math.random() * 0.15) : 0.85
+                opacity: isMounted ? 0.85 + (Math.random() * 0.1) : 0.9
               }}
             />
           ))}
