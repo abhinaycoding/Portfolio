@@ -41,7 +41,7 @@ export default function Home() {
               <VaultTransition />
 
               <motion.div
-                className="relative z-10 w-full flex flex-col gap-20 md:gap-32 lg:gap-40 bg-transparent"
+                className="relative z-10 w-full flex flex-col gap-12 md:gap-16 lg:gap-20 bg-transparent"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.05 }}

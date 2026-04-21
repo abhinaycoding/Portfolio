@@ -40,7 +40,7 @@ export default function AboutMe() {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="relative py-32 md:py-48 lg:py-64 overflow-hidden bg-[#050505]">
+    <section id="about" className="relative py-8 md:py-12 lg:py-16 overflow-hidden bg-[#050505]">
 
       {/* ── Background Elements ── */}
       <div className="absolute w-[900px] h-[900px] bg-[#00E5FF]/[0.15] rounded-full blur-[180px] pointer-events-none -top-60 -right-60 z-0" />

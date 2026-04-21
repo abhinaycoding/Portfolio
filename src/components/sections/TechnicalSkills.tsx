@@ -83,7 +83,7 @@ export default function TechnicalSkills() {
   }, []);
 
   return (
-    <section id="skills" ref={sectionRef} className="relative py-32 md:py-48 lg:py-56 overflow-hidden">
+    <section id="skills" ref={sectionRef} className="relative py-12 md:py-20 lg:py-24 overflow-hidden bg-transparent px-6 font-['Nunito',sans-serif]">
 
       {/* ── Section separator ── */}
       <div className="pop-divider absolute top-0 left-0 right-0 opacity-10" />

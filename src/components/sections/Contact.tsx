@@ -39,7 +39,7 @@ export default function Contact() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section id="contact" ref={sectionRef} className="relative py-32 md:py-48 lg:py-64 overflow-hidden bg-[#050505] border-t border-white/5">
+    <section id="contact" ref={sectionRef} className="relative py-16 md:py-24 lg:py-32 overflow-hidden bg-[#050505] border-t border-white/5">
       
       {/* ─── CLEAN SUBTLE DIVIDER ─── */}
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
