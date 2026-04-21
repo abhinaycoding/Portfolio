@@ -64,7 +64,7 @@ export default function Contact() {
                     <div className="flex animate-marquee whitespace-nowrap">
                         {[...Array(10)].map((_, i) => (
                             <span key={i} className="text-black font-black text-[10px] px-4 uppercase tracking-[0.3em]">
-                                SYSTEM_STATUS: READY TO BUILD /// TRANSMITTING... /// 
+                                PLEASE HIRE ME RECRUITER /// PLEASE HIRE ME RECRUITER /// PLEASE HIRE ME RECRUITER /// 
                             </span>
                         ))}
                     </div>
