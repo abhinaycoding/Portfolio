@@ -77,7 +77,7 @@ function ExperienceCard({ log, i, colors }: { log: any; i: number; colors: strin
                 }}
                 className="absolute top-6 right-10 z-30 px-6 py-2 bg-black border-[3px] border-white rounded-xl shadow-[4px_4px_0_0_#000] flex items-center gap-2 font-black text-white text-xs uppercase"
              >
-                <Zap className="w-4 h-4 text-[#FFE234] fill-current" />
+                <Zap className="w-4 h-4 text-[#FFE234] fill-current" strokeWidth={2.5} />
                 {log.meta.split(' // ')[0]}
              </motion.div>
 
@@ -134,11 +134,11 @@ export default function Experience() {
       <div className="max-w-6xl mx-auto relative flex flex-col items-center">
         
         {/* ─── SECTION HEADER ─── */}
-        <div className="items-center mb-32 relative z-10 w-full flex flex-col text-center">
+        <div className="items-center mb-24 md:mb-32 relative z-10 w-full flex flex-col text-center px-4">
           <div className="inline-block bg-white border-[3px] border-black text-black px-6 py-2.5 font-black uppercase text-xl rounded-full shadow-[6px_6px_0_0_#000] mb-8 rotate-[2deg] hover:rotate-[-2deg] transition-transform whitespace-nowrap">
             STORY_LOG v2.0 🍄
           </div>
-          <h2 className="text-6xl md:text-[8rem] lg:text-[10rem] font-['Fredoka',sans-serif] font-bold text-white leading-[0.8] tracking-tight rotate-[-1deg]" style={{ WebkitTextStroke: "3px black", textShadow: "8px 8px 0px black" }}>
+          <h2 className="text-5xl md:text-[8rem] lg:text-[10rem] font-['Fredoka',sans-serif] font-bold text-white leading-[0.9] tracking-tight rotate-[-1deg]" style={{ WebkitTextStroke: "3px black", textShadow: "8px 8px 0px black" }}>
             The Epic <br/> <span className="text-[#FFE234]">Journey!</span>
           </h2>
         </div>

@@ -154,24 +154,7 @@ export default function TechnicalSkills() {
 
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-12">
             <div className="space-y-1">
-              {["The engine", "room."].map((line, i) => (
-                <div key={i} className="mask-line overflow-hidden">
-                  <motion.h2
-                    initial={{ x: 50, opacity: 0 }}
-                    whileInView={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.8, delay: i * 0.1 }}
-                    viewport={{ once: true }}
-                    className="text-4xl md:text-6xl lg:text-[5.5rem] font-black leading-[0.9] tracking-tight uppercase"
-                    style={{ 
-                      fontFamily: "'Fredoka', sans-serif",
-                      WebkitTextStroke: "2px white",
-                      textShadow: "8px 8px 0 black"
-                    }}
-                  >
-                    {line}
-                  </motion.h2>
-                </div>
-              ))}
+              {/* Removed 'The engine room.' header text */}
             </div>
 
             {/* Tabs - Funny Buttons */}

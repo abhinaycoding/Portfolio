@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import SmoothScroll from "@/components/SmoothScroll";
 
 export const metadata: Metadata = {
-  title: "Abhinay — Funky Product Engineer",
-  description: "Product Engineer building high-energy, performant systems.",
+  title: "Abhinay's Portfolio",
+  description: "High-fidelity Product Engineer building elite digital infrastructure with a focus on performance, motion, and industrial-pop aesthetics.",
   icons: {
     icon: "/favicon.png",
   },
