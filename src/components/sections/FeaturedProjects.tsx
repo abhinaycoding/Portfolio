@@ -13,7 +13,7 @@ const PROJECTS = [
     desc: "A premium, gamified study platform for ambitious students. Master your curriculum with focused tools and deep-work integration for maximum academic impact.",
     tech: ["Next.js", "Framer Motion", "Tailwind", "Radix UI"],
     metrics: ["Gamified XP", "Study Mode"],
-    year: "2024",
+    year: "2026",
     link: "https://notenook-app.vercel.app/",
     color: "bg-[#FFE234]",
     icon: "📖"
