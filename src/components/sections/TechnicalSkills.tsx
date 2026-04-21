@@ -23,7 +23,8 @@ import {
   Globe,
   Link,
   RotateCcw,
-  Smartphone
+  Smartphone,
+  Star
 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -64,7 +65,14 @@ const STACK = [
   },
 ];
 
-const FLOATING_SYMBOLS = ["{ }", "const", "=>", "( )", "< />", "01", "if", "[]", "&&"];
+const FLOATING_STICKERS = [
+  { icon: Zap, color: "bg-[#FFE234]", rotate: 15, top: "10%", left: "5%" },
+  { icon: Star, color: "bg-[#FF3CAC]", rotate: -15, top: "20%", left: "85%" },
+  { icon: Smartphone, color: "bg-[#00E5FF]", rotate: 10, top: "80%", left: "12%" },
+  { icon: Box, color: "bg-[#39FF14]", rotate: -10, top: "65%", left: "90%" },
+  { icon: Zap, color: "bg-[#FF6B00]", rotate: 20, top: "45%", left: "3%" },
+  { icon: Flame, color: "bg-[#FFE234]", rotate: -5, top: "15%", left: "45%" },
+];
 
 export default function TechnicalSkills() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -82,28 +90,41 @@ export default function TechnicalSkills() {
     return () => ctx.revert();
   }, []);
 
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const yParallax = useTransform(scrollYProgress, [0, 1], [0, -100]);
+
   return (
     <section id="skills" ref={sectionRef} className="relative py-12 md:py-20 lg:py-24 overflow-hidden bg-transparent px-6 font-['Nunito',sans-serif]">
 
       {/* ── Section separator ── */}
       <div className="pop-divider absolute top-0 left-0 right-0 opacity-10" />
 
-      {/* Floating Symbols Atmosphere */}
-      {hasMounted && FLOATING_SYMBOLS.map((s, i) => (
-        <motion.div
-            key={i}
-            initial={{ opacity: 0, x: Math.random() * 100 + "%", y: Math.random() * 100 + "%" }}
-            animate={{ 
-                y: ["-20px", "20px"], 
-                rotate: [0, 10, 0],
-                opacity: [0.03, 0.08, 0.03] 
-            }}
-            transition={{ duration: 5 + i, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute font-mono font-black text-4xl text-white pointer-events-none select-none z-0"
-        >
-            {s}
-        </motion.div>
-      ))}
+      {/* Floating Industrial Stickers */}
+      {hasMounted && FLOATING_STICKERS.map((s, i) => {
+        const Icon = s.icon;
+        return (
+            <motion.div
+                key={i}
+                style={{ 
+                    top: s.top, 
+                    left: s.left,
+                    y: useTransform(scrollYProgress, [0, 1], [0, -50 * (i + 1)])
+                }}
+                animate={{ 
+                    rotate: [s.rotate, s.rotate + 10, s.rotate],
+                    scale: [1, 1.1, 1] 
+                }}
+                transition={{ duration: 4 + i, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute pointer-events-none select-none z-0 hidden lg:block"
+            >
+                <div className={`relative w-16 h-16 ${s.color} border-[4px] border-black rounded-2xl shadow-[6px_6px_0_0_#000] flex items-center justify-center`}>
+                    <Icon size={32} className="text-black" strokeWidth={3} />
+                    {/* Sticker "Peel" reflect */}
+                    <div className="absolute top-1 left-1 w-4 h-1.5 bg-white/40 rounded-full rotate-[-45deg]" />
+                </div>
+            </motion.div>
+        );
+      })}
 
       {/* Background grid + vibrant shapes - BOOSTED */}
       <div className="absolute inset-0 spotlight-grid opacity-30" />
