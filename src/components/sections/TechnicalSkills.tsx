@@ -100,31 +100,9 @@ export default function TechnicalSkills() {
       <div className="pop-divider absolute top-0 left-0 right-0 opacity-10" />
 
       {/* Floating Industrial Stickers */}
-      {hasMounted && FLOATING_STICKERS.map((s, i) => {
-        const Icon = s.icon;
-        return (
-            <motion.div
-                key={i}
-                style={{ 
-                    top: s.top, 
-                    left: s.left,
-                    y: useTransform(scrollYProgress, [0, 1], [0, -50 * (i + 1)])
-                }}
-                animate={{ 
-                    rotate: [s.rotate, s.rotate + 10, s.rotate],
-                    scale: [1, 1.1, 1] 
-                }}
-                transition={{ duration: 4 + i, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute pointer-events-none select-none z-0 hidden lg:block"
-            >
-                <div className={`relative w-16 h-16 ${s.color} border-[4px] border-black rounded-2xl shadow-[6px_6px_0_0_#000] flex items-center justify-center`}>
-                    <Icon size={32} className="text-black" strokeWidth={3} />
-                    {/* Sticker "Peel" reflect */}
-                    <div className="absolute top-1 left-1 w-4 h-1.5 bg-white/40 rounded-full rotate-[-45deg]" />
-                </div>
-            </motion.div>
-        );
-      })}
+      {hasMounted && FLOATING_STICKERS.map((s, i) => (
+          <FloatingSticker key={i} sticker={s} i={i} scrollYProgress={scrollYProgress} />
+      ))}
 
       {/* Background grid + vibrant shapes - BOOSTED */}
       <div className="absolute inset-0 spotlight-grid opacity-30" />
@@ -346,6 +324,33 @@ function SkillCard({ skill, i, activeColor }: { skill: any; i: number; activeCol
                 </div>
             </div>
         </div>
+    </motion.div>
+  );
+}
+
+function FloatingSticker({ sticker, i, scrollYProgress }: { sticker: any; i: number; scrollYProgress: any }) {
+  const Icon = sticker.icon;
+  const yTransform = useTransform(scrollYProgress, [0, 1], [0, -50 * (i + 1)]);
+
+  return (
+    <motion.div
+      style={{
+        top: sticker.top,
+        left: sticker.left,
+        y: yTransform
+      }}
+      animate={{
+        rotate: [sticker.rotate, sticker.rotate + 10, sticker.rotate],
+        scale: [1, 1.1, 1]
+      }}
+      transition={{ duration: 4 + i, repeat: Infinity, ease: "easeInOut" }}
+      className="absolute pointer-events-none select-none z-0 hidden lg:block"
+    >
+      <div className={`relative w-16 h-16 ${sticker.color} border-[4px] border-black rounded-2xl shadow-[6px_6px_0_0_#000] flex items-center justify-center`}>
+        <Icon size={32} className="text-black" strokeWidth={3} />
+        {/* Sticker "Peel" reflect */}
+        <div className="absolute top-1 left-1 w-4 h-1.5 bg-white/40 rounded-full rotate-[-45deg]" />
+      </div>
     </motion.div>
   );
 }
