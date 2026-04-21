@@ -8,48 +8,48 @@ gsap.registerPlugin(ScrollTrigger);
 
 const PROJECTS = [
   {
-    title: "YatraSathi",
-    subtitle: "AI-Powered Real Estate Ecosystem",
-    desc: "A commute-first platform solving urban housing through AI feasibility scoring, Mapbox 3D context, and MetaMask-based blockchain verification for bulletproof listing trust.",
-    tech: ["Next.js", "MetaMask", "Mapbox", "AI Scoring"],
-    metrics: ["Blockchain Verified", "AI Scored"],
+    title: "NoteNook",
+    subtitle: "Master Your Studies",
+    desc: "A premium, gamified study platform for ambitious students. Master your curriculum with focused tools and deep-work integration for maximum academic impact.",
+    tech: ["Next.js", "Framer Motion", "Tailwind", "Radix UI"],
+    metrics: ["Gamified XP", "Study Mode"],
     year: "2024",
-    link: "#",
+    link: "https://notenook-app.vercel.app/",
     color: "bg-[#FFE234]",
-    icon: "🏠"
+    icon: "📖"
   },
   {
-    title: "AI Orchestrator",
-    subtitle: "LLM Workflow Automation",
-    desc: "Visual node-based editor for deploying localized LLM chains and automation workflows at enterprise scale with context-aware memory.",
-    tech: ["React Flow", "Python", "LangChain", "PostgreSQL"],
-    metrics: ["GPT-4o", "100k+ tokens/s"],
+    title: "PodStream",
+    subtitle: "Curating the Signal",
+    desc: "Minimalism for the auditory obsessive. A high-performance podcast aggregation dashboard engineered with a brutalist, typography-first interface.",
+    tech: ["React State", "Lucide", "Next.js", "Zustand"],
+    metrics: ["Sub-second loads", "No Bloat"],
     year: "2024",
-    link: "#",
+    link: "https://podstream-two.vercel.app/dashboard",
     color: "bg-[#FF3CAC]",
-    icon: "🤖"
+    icon: "🎙️"
   },
   {
-    title: "Elite Engine",
-    subtitle: "Luxury Commerce Platform",
-    desc: "Premium marketplace with sub-second load times, 3D product visualization, and physics-based micro-interactions.",
-    tech: ["Three.js", "GSAP", "Tailwind", "Vercel"],
-    metrics: ["100 Lighthouse", "Mobile-First"],
-    year: "2023",
-    link: "#",
+    title: "Veltrix Labs",
+    subtitle: "Digital Future Collective",
+    desc: "A digital product agency collective building the future of web experiences. High-fidelity branding meets sophisticated frontend engineering for the next generation of startups.",
+    tech: ["GSAP", "Next.js", "WebGL Logic", "Premium UI"],
+    metrics: ["Agency Grade", "Custom Motion"],
+    year: "2024",
+    link: "https://veltrixlabs.vercel.app/",
     color: "bg-[#39FF14]",
-    icon: "🏎️"
+    icon: "⚡"
   },
   {
-    title: "Liquid Portfolio",
-    subtitle: "WebGL Experience",
-    desc: "Interactive developer portfolio with liquid cursor physics, WebGL shader effects, and cinematic scroll-driven animations.",
-    tech: ["WebGL", "Next.js", "GSAP ScrollTrigger"],
-    metrics: ["60fps", "GPU Accelerated"],
-    year: "2023",
-    link: "#",
-    color: "bg-[#FFE234]",
-    icon: "💧"
+    title: "YouthForce Security",
+    subtitle: "Enterprise Defense Systems",
+    desc: "Professional security infrastructure. Engineered for high-load operational monitoring, multi-layered defense coordination, and real-time response tracking.",
+    tech: ["Vercel Edge", "Next.js", "Security Ops", "Scalable Systems"],
+    metrics: ["Client Work", "Ops Ready"],
+    year: "2024",
+    link: "https://client-work-1-rose.vercel.app/",
+    color: "bg-[#00E5FF]",
+    icon: "🛡️"
   },
 ];
 
