@@ -95,38 +95,129 @@ export default function Navbar() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[99] bg-[#FFE234] p-10 flex flex-col items-center justify-center gap-8 border-l-[8px] border-black"
+            initial={{ x: "100%", borderRadius: "0 0 0 100%" }}
+            animate={{ x: 0, borderRadius: 0 }}
+            exit={{ x: "100%", borderRadius: "0 0 0 100%" }}
+            transition={{ type: "spring", damping: 30, stiffness: 150 }}
+            className="fixed inset-0 z-[99] bg-[#FFE234] flex flex-col items-center justify-center border-l-[8px] border-black overflow-hidden"
           >
+            {/* Background Halftone Overlay */}
+            <div className="absolute inset-0 opacity-[0.1] pointer-events-none bg-[radial-gradient(#000_2px,transparent_2px)] bg-[length:10px_10px]" />
+            
+            {/* Background Cartoon Decals */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0 }} 
+              animate={{ opacity: 0.3, scale: 1 }} 
+              transition={{ delay: 0.5 }}
+              className="absolute top-20 left-10 text-7xl select-none rotate-[-12deg]"
+            >
+              ★
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0 }} 
+              animate={{ opacity: 0.3, scale: 1 }} 
+              transition={{ delay: 0.7 }}
+              className="absolute bottom-20 right-10 text-8xl select-none rotate-[15deg]"
+            >
+              ⚡
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0 }} 
+              animate={{ opacity: 0.2, scale: 1 }} 
+              transition={{ delay: 0.9 }}
+              className="absolute top-1/2 left-[-20px] text-9xl select-none opacity-10"
+            >
+              👾
+            </motion.div>
+
+            {/* Close Button "Red Alert" Style */}
             <button 
               onClick={() => setMenuOpen(false)}
-              className="absolute top-10 right-10 w-16 h-16 bg-white border-[4px] border-black rounded-full shadow-[8px_8px_0_0_#000] text-3xl font-bold"
+              className="absolute top-10 right-10 w-16 h-16 bg-[#FF3CAC] border-[4px] border-black rounded-full shadow-[6px_6px_0_0_#000] text-3xl font-black text-white hover:scale-110 active:scale-95 transition-all z-20 flex items-center justify-center overflow-hidden group"
             >
-              ✕
+              <span className="relative z-10">✕</span>
+              <div className="absolute inset-x-0 bottom-0 h-1/2 bg-black/20 group-hover:h-full transition-all" />
             </button>
-            {LINKS.map((link, i) => (
-              <motion.a
-                key={link.label}
-                href={link.href}
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.1 }}
-                onClick={() => setMenuOpen(false)}
-                className="text-5xl font-black uppercase text-black hover:scale-110 transition-transform"
-                style={{ fontFamily: "'Fredoka', sans-serif" }}
-              >
-                {link.emoji} {link.label}
-              </motion.a>
-            ))}
-            <motion.a
-              href="mailto:abhinaycoding@gmail.com"
-              className="mt-10 px-10 py-5 bg-white border-[4px] border-black rounded-full font-black text-2xl uppercase shadow-[10px_10px_0_0_#000] whitespace-nowrap"
+
+            {/* Menu Label */}
+            <motion.div 
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="absolute top-12 left-10 hidden lg:block"
             >
-              Contact Me!
-            </motion.a>
+                <div className="px-4 py-1.5 bg-black text-white text-[10px] font-black uppercase tracking-[0.3em] rounded-lg">
+                    System_Menu v1.0
+                </div>
+            </motion.div>
+
+            {/* Links Container */}
+            <div className="w-full px-10 flex flex-col gap-6 relative z-10">
+                {LINKS.map((link, i) => (
+                  <motion.div
+                    key={link.label}
+                    initial={{ opacity: 0, x: 100, rotate: 10 }}
+                    animate={{ opacity: 1, x: 0, rotate: (i % 2 === 0 ? -2 : 2) }}
+                    transition={{ 
+                        type: "spring", 
+                        damping: 20, 
+                        stiffness: 150,
+                        delay: 0.2 + (i * 0.1) 
+                    }}
+                  >
+                    <Magnetic>
+                        <a
+                            href={link.href}
+                            onClick={() => setMenuOpen(false)}
+                            className="group relative flex items-center gap-6 px-8 py-5 bg-white border-[4px] border-black rounded-3xl shadow-[8px_8px_0_0_#000] hover:shadow-[12px_12px_0_0_#000] transition-all hover:-translate-y-2 active:translate-y-1 active:shadow-none"
+                        >
+                            <span className="text-4xl group-hover:scale-125 transition-transform duration-300">
+                                {link.emoji}
+                            </span>
+                            <span 
+                                className="text-4xl md:text-6xl font-black uppercase text-black tracking-tight"
+                                style={{ fontFamily: "'Fredoka', sans-serif" }}
+                            >
+                                {link.label}
+                            </span>
+                            
+                            {/* Sticker Accent */}
+                            <div className="absolute top-2 right-6 opacity-10 group-hover:opacity-100 transition-opacity">
+                                <Zap className="w-6 h-6 text-[#FFE234] fill-current" />
+                            </div>
+                        </a>
+                    </Magnetic>
+                  </motion.div>
+                ))}
+                
+                {/* Contact CTA */}
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.8 }}
+                    className="mt-6 self-center w-full"
+                >
+                    <Magnetic>
+                        <a
+                        href="mailto:abhinaycoding@gmail.com"
+                        className="flex items-center justify-center gap-4 px-10 py-6 bg-[#39FF14] border-[4px] border-black rounded-full font-black text-2xl md:text-3xl uppercase shadow-[10px_10px_0_0_#000] hover:shadow-[14px_14px_0_0_#000] transition-all hover:scale-105 active:scale-95 whitespace-nowrap group"
+                        >
+                        <span>HIRE ME</span>
+                        <Rocket className="w-8 h-8 group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform" />
+                        </a>
+                    </Magnetic>
+                </motion.div>
+            </div>
+
+            {/* Bottom Warning Tape Decoration */}
+            <div className="absolute bottom-0 w-[200%] h-8 bg-black flex overflow-hidden opacity-20 pointer-events-none">
+                <div className="flex animate-marquee whitespace-nowrap">
+                    {[...Array(20)].map((_, i) => (
+                        <span key={i} className="text-yellow-400 font-black text-lg px-4 italic tracking-widest">
+                            CAUTION // HIGH VOLTAGE // SYSTEM_READY //
+                        </span>
+                    ))}
+                </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
