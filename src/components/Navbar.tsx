@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { motion, useScroll, AnimatePresence } from "framer-motion";
 import { Zap, Rocket } from "lucide-react";
 import Magnetic from "./Magnetic";
+import Logo from "./Logo";
 
 const LINKS = [
   { label: "About", href: "#about", emoji: "👤" },
@@ -42,11 +43,9 @@ export default function Navbar() {
               href="#"
               whileHover={{ rotate: 10, scale: 1.1 }}
               onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-              className={`flex items-center justify-center w-12 h-12 rounded-2xl border-[3px] border-black shadow-[4px_4px_0_0_#000] font-bold text-2xl transition-colors ${
-                scrolled ? "bg-[#FFE234] text-black" : "bg-white text-black"
-              }`}
+              className="flex items-center justify-center transition-colors"
             >
-              A
+              <Logo scrolled={scrolled} />
             </motion.a>
           </Magnetic>
 

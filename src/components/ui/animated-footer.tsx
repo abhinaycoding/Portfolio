@@ -1,5 +1,6 @@
 "use client"
 import React, { useEffect, useRef, useState } from "react";
+import Logo from "../Logo";
 
 interface LinkItem {
   href: string;
@@ -128,9 +129,7 @@ const Footer: React.FC<FooterProps> = ({
           
           <div className="pt-4">
             <div className="flex items-center gap-2 mb-4">
-               <div className="w-8 h-8 md:w-10 md:h-10 bg-[#FFE234] border-[3px] border-black rounded-xl flex items-center justify-center font-black text-black shadow-[4px_4px_0_0_#000] rotate-[-5deg]">
-                  A
-               </div>
+               <Logo className="w-10 h-10" scrolled={true} />
                <span className="text-xl font-black italic tracking-tighter uppercase leading-none">
                  ABHINAY — <span className="text-[#FFE234]">DEV</span>
                </span>

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence, useScroll, useSpring, useTransform } from "framer-motion";
 import { User, Brain, Rocket, MessageSquare, Zap, Trophy } from "lucide-react";
 import Magnetic from "./Magnetic";
+import Logo from "./Logo";
 
 const LINKS = [
   { label: "About", href: "#about", icon: User },
@@ -47,10 +48,9 @@ export default function Sidebar() {
         <motion.a
           href="#"
           whileHover={{ scale: 1.05 }}
-          className="w-14 h-14 bg-[#FFE234] border-[3px] border-black rounded-2xl flex items-center justify-center text-2xl font-black text-black shadow-[4px_4px_0_0_#000]"
-          style={{ fontFamily: "'Fredoka', sans-serif" }}
+          className="flex items-center justify-center transition-transform"
         >
-          A
+          <Logo className="w-14 h-14" scrolled={true} />
         </motion.a>
       </Magnetic>
 
