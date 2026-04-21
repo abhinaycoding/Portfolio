@@ -43,7 +43,9 @@ export default function Home() {
 
               <AboutMe />
               <PaperTearTransition />
-              <TechnicalSkills />
+              <div className="relative -mt-[100vh] lg:-mt-[80vh] z-10">
+                <TechnicalSkills />
+              </div>
               <FeaturedProjects />
               <Achievements />
               <Contact />
