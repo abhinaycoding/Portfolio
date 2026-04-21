@@ -8,7 +8,6 @@ import TechnicalSkills from "@/components/sections/TechnicalSkills";
 import FeaturedProjects from "@/components/sections/FeaturedProjects";
 import Achievements from "@/components/sections/Achievements";
 import Contact from "@/components/sections/Contact";
-import PaperTearTransition from "@/components/ui/paper-tear-transition";
 import AnimatedFooter from "@/components/ui/animated-footer";
 import { DripBackdrop } from "@/components/ui/drip-backdrop";
 import { motion, AnimatePresence } from "framer-motion";

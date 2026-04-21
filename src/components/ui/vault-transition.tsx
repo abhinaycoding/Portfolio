@@ -169,7 +169,7 @@ export default function VaultTransition() {
              <div className="absolute inset-6 rounded-full bg-[#FFE234] border-[6px] border-black shadow-[inset_6px_6px_0_0_rgba(0,0,0,0.3)]" />
 
              {/* Spinning Locking Ring Mechanism */}
-             <div ref={lockRingRef} className="absolute inset-8 rounded-full border-[20px] border-[#FF6B00] border-x-black border-dashed opacity-100" style={{ borderDasharray: "30 20" }} />
+             <div ref={lockRingRef} className="absolute inset-8 rounded-full border-[20px] border-[#FF6B00] border-x-black border-dashed opacity-100" />
              
              {/* Massive Rotating Vault Gear */}
              <div ref={mainGearRef} className="absolute inset-16 flex items-center justify-center bg-white border-[6px] border-black rounded-full shadow-[8px_8px_0_0_rgba(0,0,0,1)] z-10">
