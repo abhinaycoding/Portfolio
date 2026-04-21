@@ -54,11 +54,7 @@ export default function Home() {
                 <Contact />
                 
                 <AnimatedFooter 
-                  leftLinks={[
-                    { href: "#", label: "Legal" },
-                    { href: "#", label: "Privacy" },
-                    { href: "#", label: "Cookies" },
-                  ]}
+                  leftLinks={[]}
                   rightLinks={[
                     { href: "https://github.com/abhinaycoding", label: "GitHub" },
                     { href: "https://linkedin.com/in/abhinay-nachankar-36b3a7223/", label: "LinkedIn" },
