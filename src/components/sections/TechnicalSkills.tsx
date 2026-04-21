@@ -244,7 +244,7 @@ function SkillCard({ skill, i, activeColor }: { skill: any; i: number; activeCol
         onMouseLeave={handleMouseLeave}
         style={{ rotateX, rotateY, perspective: 1000 }}
         className={`skill-item group relative border-[4px] border-black shadow-[10px_10px_0_0_#000] bg-white rounded-[2rem] overflow-visible transition-shadow duration-300 ${
-          isFeatured ? "lg:col-span-3 md:col-span-2 p-10" : "lg:col-span-2 p-8"
+          isFeatured ? "lg:col-span-3 md:col-span-2 p-6 md:p-10" : "lg:col-span-2 p-5 md:p-8"
         }`}
     >
         {/* ── Floating 'LEVEL' Sticker ── */}

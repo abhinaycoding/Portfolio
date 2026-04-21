@@ -240,7 +240,7 @@ function AchievementCard({ item, i }: { item: any; i: number }) {
                 </div>
 
                 {/* Content Section */}
-                <div className="px-8 md:px-12 py-10 flex flex-col justify-between flex-1 relative bg-gradient-to-b from-[#111] to-[#0a0a0a]">
+                <div className="px-5 md:px-12 py-6 md:py-10 flex flex-col justify-between flex-1 relative bg-gradient-to-b from-[#111] to-[#0a0a0a]">
                     <div className="relative z-10">
                         <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-4 italic group-hover/card:text-[#FFE234] transition-colors" style={{ fontFamily: "'Fredoka', sans-serif" }}>
                             {item.title}

@@ -204,37 +204,37 @@ function ProjectRow({ project, index }: { project: (typeof PROJECTS)[0]; index: 
             className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300 z-20"
         />
 
-        <div className="flex flex-col lg:flex-row lg:items-center gap-10 relative z-10">
+        <div className="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-10 relative z-10">
 
-          {/* Index + Emoji */}
-          <div className="flex items-center gap-6 shrink-0">
-            <span className="text-xl font-black text-black/20 font-mono">
+          {/* Index + Emoji Group */}
+          <div className="flex items-center gap-4 shrink-0">
+            <span className="text-sm font-black text-black/20 font-mono">
               0{index + 1}
             </span>
-            <div className={`w-16 h-16 flex items-center justify-center rounded-2xl border-[3px] border-black ${project.color} text-3xl shadow-[4px_4px_0_0_#000] transition-transform group-hover:rotate-12 group-hover:scale-110`}>
+            <div className={`w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-xl md:rounded-2xl border-[3px] border-black ${project.color} text-2xl md:text-3xl shadow-[4px_4px_0_0_#000] transition-transform group-hover:rotate-12 group-hover:scale-110`}>
               {project.icon}
             </div>
           </div>
 
-          {/* Title + subtitle */}
+          {/* Title + subtitle Group */}
           <div className="flex-1 min-w-0">
             <h3
-              className="text-2xl md:text-4xl font-black tracking-tight text-black uppercase leading-[1.0]"
+              className="text-xl md:text-4xl font-black tracking-tight text-black uppercase leading-tight"
               style={{ fontFamily: "'Fredoka', sans-serif" }}
             >
               {project.title}
             </h3>
-            <p className="text-sm font-bold text-black/40 uppercase tracking-widest mt-2 font-['Nunito',sans-serif]">
+            <p className="text-[10px] md:text-sm font-bold text-black/40 uppercase tracking-widest mt-1 font-['Nunito',sans-serif]">
               {project.subtitle}
             </p>
           </div>
 
-          {/* Tech tags */}
+          {/* Tech tags - Horizontal scroll or wrap on mobile */}
           <div className="flex flex-wrap gap-2 shrink-0">
             {project.tech.map((t, i) => (
               <span
                 key={i}
-                className="px-4 py-1.5 text-[11px] font-black uppercase tracking-widest border-[3px] border-black rounded-full bg-black text-white group-hover:bg-[#FFE234] group-hover:text-black transition-colors whitespace-nowrap shadow-[4px_4px_0_0_rgba(0,0,0,0.1)] group-hover:shadow-[4px_4px_0_0_#000]"
+                className="px-3 md:px-4 py-1 md:py-1.5 text-[9px] md:text-[11px] font-black uppercase tracking-widest border-[2px] md:border-[3px] border-black rounded-full bg-black text-white group-hover:bg-[#FFE234] group-hover:text-black transition-colors shadow-[2px_2px_0_0_#000]"
                 style={{ fontFamily: "'Fredoka', sans-serif" }}
               >
                 {t}
@@ -242,25 +242,25 @@ function ProjectRow({ project, index }: { project: (typeof PROJECTS)[0]; index: 
             ))}
           </div>
 
-          {/* Arrow / View */}
-          <div className="shrink-0 flex items-center gap-4">
-            <span className="hidden lg:block text-xs font-black text-black/20 uppercase tracking-widest font-mono">
+          {/* Action Row for Mobile (Arrow / View / Year) */}
+          <div className="flex items-center justify-between lg:justify-end gap-4 mt-2 lg:mt-0">
+            <span className="text-[11px] font-black text-black/30 uppercase tracking-widest font-mono">
                 {project.year}
             </span>
-            <div className="w-14 h-14 rounded-full border-[4px] border-black bg-[#FFE234] flex items-center justify-center shadow-[4px_4px_0_0_#000] group-hover:shadow-[8px_8px_0_0_#000] transition-all active:scale-95">
-                <span className="text-2xl font-black text-black">🚀</span>
+            <div className="w-12 h-12 md:w-14 md:h-14 rounded-full border-[3px] md:border-[4px] border-black bg-[#FFE234] flex items-center justify-center shadow-[4px_4px_0_0_#000] group-hover:shadow-[6px_6px_0_0_#000] transition-all active:scale-95">
+                <span className="text-xl md:text-2xl font-black text-black">🚀</span>
             </div>
           </div>
         </div>
 
-        {/* Detail text on hover */}
-        <div className="mt-8 pt-8 border-t-[3px] border-black/10 flex flex-col md:flex-row md:items-center justify-between gap-6 opacity-0 group-hover:opacity-100 translate-y-10 group-hover:translate-y-0 transition-all duration-500">
-            <p className="text-black font-bold text-lg max-w-xl italic">
+        {/* Detail text on hover - Compact on mobile */}
+        <div className="mt-6 pt-6 border-t-[2px] border-black/10 flex flex-col md:flex-row md:items-center justify-between gap-4 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 overflow-hidden h-0 group-hover:h-auto">
+            <p className="text-black font-bold text-sm md:text-lg max-w-xl italic">
                 &quot;{project.desc}&quot;
             </p>
-            <div className="flex gap-6">
+            <div className="flex flex-wrap gap-3">
                 {project.metrics.map((m, mi) => (
-                    <span key={mi} className="px-5 py-2 bg-black text-white rounded-xl text-xs font-black uppercase tracking-widest border-[2px] border-[#FFE234]/50 whitespace-nowrap shadow-[4px_4px_0_0_rgba(255,226,52,0.2)]">
+                    <span key={mi} className="px-3 py-1 bg-black text-white rounded-lg text-[9px] md:text-xs font-black uppercase tracking-widest border-[2px] border-[#FFE234]/50 shadow-[2px_2px_0_0_rgba(255,226,52,0.2)]">
                         {m}
                     </span>
                 ))}
