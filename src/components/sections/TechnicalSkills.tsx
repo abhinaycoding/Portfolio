@@ -114,7 +114,7 @@ export default function TechnicalSkills() {
 
         {/* ── Header ── */}
         <div className="mb-20">
-          <div className="w-fit px-6 py-2 bg-[#FF3CAC] border-[4px] border-black rounded-full shadow-[6px_6px_0_0_#000] rotate-1 mb-10">
+          <div className="w-fit px-6 py-2 bg-[#FF3CAC] border-[4px] border-black rounded-full shadow-[6px_6px_0_0_#000] rotate-1 mb-10 whitespace-nowrap">
             <span className="text-sm font-black tracking-[0.2em] uppercase text-black block">
               TECH STACK 🧠
             </span>
@@ -214,19 +214,19 @@ function SkillCard({ skill, i, activeColor }: { skill: any; i: number; activeCol
   const cardRef = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
+  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 30 });
+  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 30 });
 
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [15, -15]), { stiffness: 100, damping: 20 });
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-15, 15]), { stiffness: 100, damping: 20 });
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], [15, -15]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], [-15, 15]);
 
   function handleMouseMove(event: React.MouseEvent) {
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     const mouseX = event.clientX - rect.left;
     const mouseY = event.clientY - rect.top;
-    const xPct = mouseX / rect.width - 0.5;
-    const yPct = mouseY / rect.height - 0.5;
-    x.set(xPct);
-    y.set(yPct);
+    x.set(mouseX / rect.width - 0.5);
+    y.set(mouseY / rect.height - 0.5);
   };
 
   function handleMouseLeave() {
@@ -243,15 +243,38 @@ function SkillCard({ skill, i, activeColor }: { skill: any; i: number; activeCol
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         style={{ rotateX, rotateY, perspective: 1000 }}
-        className={`skill-item group relative border-[4px] border-black shadow-[10px_10px_0_0_#000] bg-white rounded-[2rem] overflow-hidden ${
+        className={`skill-item group relative border-[4px] border-black shadow-[10px_10px_0_0_#000] bg-white rounded-[2rem] overflow-visible transition-shadow duration-300 ${
           isFeatured ? "lg:col-span-3 md:col-span-2 p-10" : "lg:col-span-2 p-8"
         }`}
     >
+        {/* ── Floating 'LEVEL' Sticker ── */}
+        <motion.div 
+            style={{ 
+                x: useTransform(mouseXSpring, [-0.5, 0.5], [-20, 20]),
+                y: useTransform(mouseYSpring, [-0.5, 0.5], [-20, 20]),
+                rotate: 15
+            }}
+            className={`absolute -top-4 -right-4 z-30 px-3 py-1 ${activeColor} border-[3px] border-black rounded-lg shadow-[4px_4px_0_0_#000] flex items-center justify-center font-black text-black text-[9px] scale-0 group-hover:scale-100 transition-transform duration-300 pointer-events-none`}
+        >
+            {skill.proficiency > 90 ? "EXPERT" : "PRO"}
+        </motion.div>
+
+        {/* Decorative Rivets */}
+        <div className="absolute top-4 left-4 w-2 h-2 bg-black/10 rounded-full z-40 border-[1px] border-black/20" />
+        <div className="absolute top-4 right-10 w-2 h-2 bg-black/10 rounded-full z-40 border-[1px] border-black/20" />
+
         {/* Pattern Overlay */}
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none noise-bg" />
         
-        {/* Hover Highlight (Sticker style) */}
-        <div className="absolute top-4 left-6 w-16 h-4 bg-black/5 rounded-full rotate-[-4deg] opacity-0 group-hover:opacity-100 transition-opacity" />
+        {/* ── Holographic Shine ── */}
+        <motion.div 
+            style={{ 
+                left: useTransform(mouseXSpring, [-0.5, 0.5], ["-100%", "200%"]),
+                top: useTransform(mouseYSpring, [-0.5, 0.5], ["-50%", "150%"]),
+                background: "linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%)" 
+            }}
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300 z-20"
+        />
 
         <div className="relative z-10 flex flex-col h-full">
             <div className="flex items-start justify-between mb-8">
@@ -272,35 +295,36 @@ function SkillCard({ skill, i, activeColor }: { skill: any; i: number; activeCol
             </div>
 
             {isFeatured && skill.description && (
-                <p className="text-black/60 font-medium leading-relaxed mb-8 max-w-[280px]" style={{ fontFamily: "'Nunito', sans-serif" }}>
-                    {skill.description}
+                <p className="text-black/60 font-bold leading-relaxed mb-8 max-w-[280px]" style={{ fontFamily: "'Nunito', sans-serif" }}>
+                    &quot;{skill.description}&quot;
                 </p>
             )}
 
             <div className="mt-auto">
-                {/* Progress bar container */}
-                <div className="relative h-4 bg-black/10 border-[3px] border-black rounded-full overflow-hidden">
+                <div className="flex justify-between mb-2">
+                    <span className="text-[10px] font-black text-black/20 uppercase tracking-[0.2em]">Sensor Data</span>
+                    <span className="text-[10px] font-black text-black uppercase">{skill.proficiency}%</span>
+                </div>
+                {/* Progress bar container (Physical Gauge Style) */}
+                <div className="relative h-5 bg-black/10 border-[4px] border-black rounded-xl overflow-hidden">
                     <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.proficiency}%` }}
                         transition={{ duration: 1.5, delay: 0.2, ease: "backOut" }}
                         viewport={{ once: true }}
-                        className={`absolute inset-0 ${activeColor} border-r-[3px] border-black`}
+                        className={`absolute inset-0 ${activeColor} border-r-[4px] border-black`}
                     />
-                    {/* Stripes */}
-                    <div className="absolute inset-0 opacity-10 bg-[repeating-linear-gradient(45deg,transparent,transparent_8px,rgba(0,0,0,1)_8px,rgba(0,0,0,1)_16px)]" />
+                    {/* Gauge Marks */}
+                    <div className="absolute inset-0 opacity-20 flex justify-around items-center px-1 pointer-events-none">
+                        {[...Array(10)].map((_, idx) => (
+                            <div key={idx} className="w-0.5 h-2 bg-black/40 rounded-full" />
+                        ))}
+                    </div>
+                    {/* Glass Shine */}
+                    <div className="absolute inset-x-0 top-0 h-1/2 bg-white/10 pointer-events-none" />
                 </div>
             </div>
         </div>
-
-        {/* 3D Reflection Spot */}
-        <motion.div 
-            style={{ 
-                x: useTransform(x, [-0.5, 0.5], [-100, 100]), 
-                y: useTransform(y, [-0.5, 0.5], [-100, 100]) 
-            }}
-            className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity"
-        />
     </motion.div>
   );
 }

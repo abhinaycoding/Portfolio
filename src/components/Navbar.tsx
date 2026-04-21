@@ -70,7 +70,7 @@ export default function Navbar() {
               <motion.a
                 href="mailto:abhinaycoding@gmail.com"
                 whileHover={{ scale: 1.05, rotate: -2 }}
-                className="ml-2 px-6 py-2.5 bg-[#FFE234] text-black border-[3px] border-black rounded-full font-black text-sm uppercase shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000] transition-all"
+                className="ml-2 px-6 py-2.5 bg-[#FFE234] text-black border-[3px] border-black rounded-full font-black text-sm uppercase shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000] transition-all whitespace-nowrap"
               >
                 Hire Me ⚡
               </motion.a>
@@ -123,7 +123,7 @@ export default function Navbar() {
             ))}
             <motion.a
               href="mailto:abhinaycoding@gmail.com"
-              className="mt-10 px-10 py-5 bg-white border-[4px] border-black rounded-full font-black text-2xl uppercase shadow-[10px_10px_0_0_#000]"
+              className="mt-10 px-10 py-5 bg-white border-[4px] border-black rounded-full font-black text-2xl uppercase shadow-[10px_10px_0_0_#000] whitespace-nowrap"
             >
               Contact Me!
             </motion.a>

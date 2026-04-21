@@ -43,7 +43,7 @@ export default function Experience() {
         
         {/* ─── SECTION HEADER ─── */}
         <div className="text-center mb-32 relative z-10 w-full flex flex-col items-center">
-          <div className="inline-block bg-white border-[3px] border-black text-black px-4 py-2 font-black uppercase text-xl rounded-full shadow-[4px_4px_0_0_#000] mb-8 rotate-[2deg] hover:rotate-[-2deg] transition-transform">
+          <div className="inline-block bg-white border-[3px] border-black text-black px-4 py-2 font-black uppercase text-xl rounded-full shadow-[4px_4px_0_0_#000] mb-8 rotate-[2deg] hover:rotate-[-2deg] transition-transform whitespace-nowrap">
             Level Up! 🍄
           </div>
           <h2 className="text-6xl md:text-[8rem] font-['Fredoka',sans-serif] font-bold text-white leading-[0.9] tracking-wide rotate-[-1deg]" style={{ WebkitTextStroke: "3px black", textShadow: "8px 8px 0px black" }}>
@@ -73,7 +73,7 @@ export default function Experience() {
                       {log.year}
                    </div>
                    <h3 className="text-4xl md:text-5xl font-['Fredoka',sans-serif] text-white font-bold mb-4 tracking-wide shadow-black" style={{ WebkitTextStroke: "2px black", textShadow: "4px 4px 0px black" }}>{log.role}</h3>
-                   <p className="text-3xl text-black font-extrabold uppercase bg-white inline-block px-4 py-1 border-[4px] border-black rounded-full shadow-[4px_4px_0_0_#000] rotate-[1deg]">{log.company}</p>
+                   <p className="text-3xl text-black font-extrabold uppercase bg-white inline-block px-4 py-1 border-[4px] border-black rounded-full shadow-[4px_4px_0_0_#000] rotate-[1deg] whitespace-nowrap">{log.company}</p>
                  </div>
                  
                  {/* Right Column: Descriptions & Tags */}
@@ -82,7 +82,7 @@ export default function Experience() {
                    
                    <div className="flex flex-wrap gap-3">
                       {log.tags.map((tag, idx) => (
-                         <span key={idx} className="px-5 py-3 bg-white border-[3px] border-black rounded-full font-black text-black shadow-[4px_4px_0_0_#000] hover:-translate-y-1 hover:rotate-3 transition-transform cursor-pointer">
+                         <span key={idx} className="px-5 py-3 bg-white border-[3px] border-black rounded-full font-black text-black shadow-[4px_4px_0_0_#000] hover:-translate-y-1 hover:rotate-3 transition-transform cursor-pointer whitespace-nowrap">
                            {tag}
                          </span>
                       ))}

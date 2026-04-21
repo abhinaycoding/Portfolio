@@ -1,6 +1,6 @@
 "use client";
 import { useRef, useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Trophy, Award, Star, ExternalLink, Zap } from "lucide-react";
 import Magnetic from "../Magnetic";
 
@@ -56,7 +56,7 @@ export default function Achievements() {
         
         {/* ── Header ── */}
         <div className="mb-20">
-          <div className="w-fit px-6 py-2 bg-[#FF3CAC] border-[4px] border-black rounded-full shadow-[6px_6px_0_0_#000] rotate-[-1deg] mb-10">
+          <div className="w-fit px-6 py-2 bg-[#FF3CAC] border-[4px] border-black rounded-full shadow-[6px_6px_0_0_#000] rotate-[-1deg] mb-10 whitespace-nowrap">
             <span className="text-sm font-black tracking-[0.2em] uppercase text-black block">
               HALL OF FAME 🏆
             </span>
@@ -122,8 +122,16 @@ export default function Achievements() {
 }
 
 function AchievementCard({ item, i }: { item: any; i: number }) {
-    const Icon = item.icon;
+    const cardRef = useRef<HTMLDivElement>(null);
     const [currentSlide, setCurrentSlide] = useState(0);
+
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+    const mouseXSpring = useSpring(x);
+    const mouseYSpring = useSpring(y);
+
+    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], [10, -10]);
+    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], [-10, 10]);
 
     useEffect(() => {
         if (item.slides && item.slides.length > 1) {
@@ -133,6 +141,20 @@ function AchievementCard({ item, i }: { item: any; i: number }) {
             return () => clearInterval(timer);
         }
     }, [item.slides]);
+
+    function handleMouseMove(event: React.MouseEvent) {
+        if (!cardRef.current) return;
+        const rect = cardRef.current.getBoundingClientRect();
+        const mouseX = event.clientX - rect.left;
+        const mouseY = event.clientY - rect.top;
+        x.set(mouseX / rect.width - 0.5);
+        y.set(mouseY / rect.height - 0.5);
+    }
+
+    function handleMouseLeave() {
+        x.set(0);
+        y.set(0);
+    }
     
     return (
         <motion.div
@@ -140,12 +162,33 @@ function AchievementCard({ item, i }: { item: any; i: number }) {
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ delay: i * 0.1, duration: 0.6 }}
             viewport={{ once: true }}
-            className={`${item.span} group relative`}
+            className={`${item.span} group relative perspective-1000`}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
         >
+            {/* ── Floating 'WIN' Sticker ── */}
+            <motion.div 
+                style={{ 
+                    x: useTransform(mouseXSpring, [-0.5, 0.5], [-20, 20]),
+                    y: useTransform(mouseYSpring, [-0.5, 0.5], [-20, 20]),
+                    rotate: -12
+                }}
+                className="absolute -top-6 -left-4 z-30 w-16 h-16 bg-[#39FF14] border-[3px] border-black rounded-full shadow-[4px_4px_0_0_#000] flex items-center justify-center font-black text-black text-xs scale-0 group-hover:scale-100 transition-transform duration-300 pointer-events-none"
+            >
+                TOP!
+            </motion.div>
+
             {/* Shadow Layer */}
             <div className="absolute inset-0 bg-black notch-card translate-x-2 translate-y-2 opacity-50" />
 
-            <div className="relative notch-card h-full bg-[#111] border-[4px] border-black overflow-hidden flex flex-col group/card hover:-translate-y-2 transition-all duration-300">
+            <motion.div 
+                ref={cardRef}
+                style={{ rotateX, rotateY }}
+                className="relative notch-card h-full bg-[#111] border-[4px] border-black overflow-hidden flex flex-col group/card transition-all duration-300"
+            >
+                {/* Decorative Rivets */}
+                <div className="absolute top-4 left-4 w-2 h-2 bg-white/20 rounded-full z-40 border-[1px] border-white/30" />
+                <div className="absolute top-4 right-4 w-2 h-2 bg-white/20 rounded-full z-40 border-[1px] border-white/30" />
                 
                 {/* Image Section */}
                 <div className={`relative ${item.aspect} w-full overflow-hidden bg-[#181818] border-b-[4px] border-black`}>
@@ -172,6 +215,16 @@ function AchievementCard({ item, i }: { item: any; i: number }) {
                         />
                     )}
                     
+                    {/* Holographic Shine Overlay */}
+                    <motion.div 
+                        style={{ 
+                            left: useTransform(mouseXSpring, [-0.5, 0.5], ["-50%", "150%"]),
+                            top: useTransform(mouseYSpring, [-0.5, 0.5], ["-50%", "150%"]),
+                            background: "linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.2) 45%, rgba(0,229,255,0.1) 50%, rgba(255,60,172,0.1) 55%, transparent 100%)" 
+                        }}
+                        className="absolute inset-0 opacity-0 group-hover/card:opacity-100 pointer-events-none transition-opacity duration-300 z-20"
+                    />
+
                     {/* Halftone Overlay */}
                     <div className="absolute inset-0 opacity-0 group-hover/card:opacity-[0.1] pointer-events-none bg-[radial-gradient(#fff_1.5px,transparent_1.5px)] bg-[length:6px_6px] transition-opacity duration-300" />
 
@@ -181,28 +234,30 @@ function AchievementCard({ item, i }: { item: any; i: number }) {
                         <span className="text-[10px] font-black uppercase tracking-widest text-white">{item.category}</span>
                     </div>
 
-                    <div className="absolute top-6 right-6 px-4 py-2 bg-white border-[2px] border-black rounded-xl shadow-[4px_4px_0_0_#000] z-20">
+                    <div className="absolute top-6 right-6 px-4 py-2 bg-white border-[2px] border-black rounded-xl shadow-[4px_4px_0_0_#000] z-20 rotate-3">
                          <span className="text-xs font-black text-black">{item.date}</span>
                     </div>
                 </div>
 
                 {/* Content Section */}
-                <div className="px-12 md:px-20 lg:px-24 py-12 md:py-16 flex flex-col justify-between flex-1">
-                    <div>
-                        <h3 className="text-3xl font-black text-white uppercase tracking-tight mb-4 italic" style={{ fontFamily: "'Fredoka', sans-serif" }}>
+                <div className="px-8 md:px-12 py-10 flex flex-col justify-between flex-1 relative bg-gradient-to-b from-[#111] to-[#0a0a0a]">
+                    <div className="relative z-10">
+                        <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-4 italic group-hover/card:text-[#FFE234] transition-colors" style={{ fontFamily: "'Fredoka', sans-serif" }}>
                             {item.title}
                         </h3>
-                        <p className="text-white/50 text-lg leading-relaxed">
+                        <p className="text-white/50 text-base leading-relaxed font-medium">
                             {item.desc}
                         </p>
                     </div>
 
-
+                    {/* Industrial Bolt Accent */}
+                    <div className="mt-8 flex items-center gap-3">
+                        <div className="flex-1 h-px bg-white/10" />
+                        <div className="w-2 h-2 rounded-full bg-white/20 border border-white/10" />
+                        <div className="w-2 h-2 rounded-full bg-white/20 border border-white/10" />
+                    </div>
                 </div>
-
-                {/* Animated Gradient Shine on Hover */}
-                <div className="absolute -inset-[100%] bg-gradient-to-tr from-transparent via-white/5 to-transparent rotate-45 translate-x-[-100%] group-hover/card:translate-x-[100%] transition-transform duration-1000 pointer-events-none" />
-            </div>
+            </motion.div>
         </motion.div>
     );
 }

@@ -1,6 +1,6 @@
 "use client";
 import { useRef, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -83,7 +83,7 @@ export default function FeaturedProjects() {
         {/* ── Header ── */}
         <div className="mb-24 lg:mb-40 flex flex-col md:flex-row md:items-end md:justify-between gap-12">
           <div>
-            <div className="w-fit px-6 py-2 bg-[#39FF14] border-[4px] border-black rounded-full shadow-[6px_6px_0_0_#000] rotate-[-1deg] mb-12">
+            <div className="w-fit px-6 py-2 bg-[#39FF14] border-[4px] border-black rounded-full shadow-[6px_6px_0_0_#000] rotate-[-1deg] mb-12 whitespace-nowrap">
               <span className="text-sm font-black tracking-[0.2em] uppercase text-black block">
                 MY WORK 🚀
               </span>
@@ -136,27 +136,73 @@ export default function FeaturedProjects() {
 function ProjectRow({ project, index }: { project: (typeof PROJECTS)[0]; index: number }) {
   const rowRef = useRef<HTMLAnchorElement>(null);
   const { scrollYProgress } = useScroll({ target: rowRef, offset: ["start end", "end start"] });
-  const rotateValue = useTransform(scrollYProgress, [0, 1], [-1, 1]);
+  const scrollRotate = useTransform(scrollYProgress, [0, 1], [-1, 1]);
+
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 30 });
+  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 30 });
+
+  const tiltX = useTransform(mouseYSpring, [-0.5, 0.5], [8, -8]);
+  const tiltY = useTransform(mouseXSpring, [-0.5, 0.5], [-8, 8]);
+
+  function handleMouseMove(event: React.MouseEvent) {
+    if (!rowRef.current) return;
+    const rect = rowRef.current.getBoundingClientRect();
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+    x.set(mouseX / rect.width - 0.5);
+    y.set(mouseY / rect.height - 0.5);
+  }
+
+  function handleMouseLeave() {
+    x.set(0);
+    y.set(0);
+  }
 
   return (
     <motion.a
       ref={rowRef}
       href={project.link}
-      style={{ rotate: rotateValue }}
-      whileHover={{ y: -24, scale: 1.1, rotate: 0, zIndex: 50 }}
-      transition={{ type: "spring", stiffness: 400, damping: 20 }}
-      className="project-row group block relative"
+      style={{ rotate: scrollRotate }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="project-row group block relative perspective-1000"
     >
+      {/* ── Floating Badge Sticker ── */}
+      <motion.div 
+        style={{ 
+            x: useTransform(mouseXSpring, [-0.5, 0.5], [-30, 30]),
+            y: useTransform(mouseYSpring, [-0.5, 0.5], [-15, 15]),
+            rotate: 15
+        }}
+        className="absolute -top-4 left-1/4 z-30 px-4 py-1.5 bg-[#FF6B00] border-[3px] border-black rounded-lg shadow-[6px_6px_0_0_#000] flex items-center justify-center font-black text-white text-[10px] scale-0 group-hover:scale-100 transition-transform duration-300 pointer-events-none"
+      >
+        PROJECT_0{index + 1}
+      </motion.div>
+
       {/* Extreme Shadow Layer */}
       <div className="absolute inset-0 bg-black notch-card translate-x-2 translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-6 group-hover:translate-y-6 transition-all duration-300" />
       
-      <div className={`relative notch-card p-8 md:p-12 border-[4px] border-black bg-white transition-all cursor-pointer overflow-hidden`}>
-        
+      <motion.div 
+        style={{ rotateX: tiltX, rotateY: tiltY }}
+        className={`relative notch-card p-8 md:p-12 border-[4px] border-black bg-white transition-all cursor-pointer overflow-hidden z-10`}
+      >
         {/* Halftone Texture Overlay on Hover */}
         <div className="absolute inset-0 opacity-0 group-hover:opacity-[0.07] pointer-events-none bg-[radial-gradient(#000_1.5px,transparent_1.5px)] bg-[length:6px_6px] transition-opacity duration-300" />
 
         {/* Shine spot */}
         <div className="absolute top-4 left-6 w-20 h-4 bg-black/10 rounded-full rotate-[-4deg]" />
+
+        {/* ── Holographic Shine ── */}
+        <motion.div 
+            style={{ 
+                left: useTransform(mouseXSpring, [-0.5, 0.5], ["-100%", "200%"]),
+                top: useTransform(mouseYSpring, [-0.5, 0.5], ["-50%", "150%"]),
+                background: "linear-gradient(135deg, transparent 0%, rgba(0,229,255,0.05) 50%, transparent 100%)" 
+            }}
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300 z-20"
+        />
 
         <div className="flex flex-col lg:flex-row lg:items-center gap-10 relative z-10">
 
@@ -188,7 +234,7 @@ function ProjectRow({ project, index }: { project: (typeof PROJECTS)[0]; index: 
             {project.tech.map((t, i) => (
               <span
                 key={i}
-                className="px-4 py-1.5 text-[11px] font-black uppercase tracking-widest border-[3px] border-black rounded-full bg-black text-white group-hover:bg-[#FFE234] group-hover:text-black transition-colors"
+                className="px-4 py-1.5 text-[11px] font-black uppercase tracking-widest border-[3px] border-black rounded-full bg-black text-white group-hover:bg-[#FFE234] group-hover:text-black transition-colors whitespace-nowrap shadow-[4px_4px_0_0_rgba(0,0,0,0.1)] group-hover:shadow-[4px_4px_0_0_#000]"
                 style={{ fontFamily: "'Fredoka', sans-serif" }}
               >
                 {t}
@@ -201,7 +247,7 @@ function ProjectRow({ project, index }: { project: (typeof PROJECTS)[0]; index: 
             <span className="hidden lg:block text-xs font-black text-black/20 uppercase tracking-widest font-mono">
                 {project.year}
             </span>
-            <div className="w-14 h-14 rounded-full border-[4px] border-black bg-[#FFE234] flex items-center justify-center shadow-[4px_4px_0_0_#000] group-hover:shadow-[6px_6px_0_0_#000] transition-all active:scale-90">
+            <div className="w-14 h-14 rounded-full border-[4px] border-black bg-[#FFE234] flex items-center justify-center shadow-[4px_4px_0_0_#000] group-hover:shadow-[8px_8px_0_0_#000] transition-all active:scale-95">
                 <span className="text-2xl font-black text-black">🚀</span>
             </div>
           </div>
@@ -214,13 +260,13 @@ function ProjectRow({ project, index }: { project: (typeof PROJECTS)[0]; index: 
             </p>
             <div className="flex gap-6">
                 {project.metrics.map((m, mi) => (
-                    <span key={mi} className="px-5 py-2 bg-black text-white rounded-xl text-xs font-black uppercase tracking-widest border-[2px] border-[#FFE234]/50">
+                    <span key={mi} className="px-5 py-2 bg-black text-white rounded-xl text-xs font-black uppercase tracking-widest border-[2px] border-[#FFE234]/50 whitespace-nowrap shadow-[4px_4px_0_0_rgba(255,226,52,0.2)]">
                         {m}
                     </span>
                 ))}
             </div>
         </div>
-      </div>
+      </motion.div>
     </motion.a>
   );
 }

@@ -128,3 +128,9 @@ body {
   box-shadow: 0 0 0 3px #000, 0 0 0 5px #fff, 0 0 0 8px #000;
 }
 
+/* Aladdin - https://www.cursors-4u.com/cursor/aladdin-20 */
+* {
+  cursor: url('https://cdn.cursors-4u.net/previews/aladdin-684d8c41-32.webp') 32 32, auto !important;
+}
+/* End www.Cursors-4U.com Code */
+

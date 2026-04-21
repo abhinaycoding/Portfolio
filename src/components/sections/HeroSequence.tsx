@@ -31,6 +31,46 @@ const AtmosphericDust = ({ count = 20 }) => {
   );
 };
 
+// --- Cartoon Decals Helper ---
+const CartoonDecals = () => {
+    const decals = [
+        { char: "★", color: "text-[#FFE234]", top: "15%", left: "12%", rotate: -15, scale: 1.5 },
+        { char: "★", color: "text-[#FF3CAC]", top: "65%", left: "85%", rotate: 20, scale: 1.2 },
+        { char: "⚡", color: "text-[#00E5FF]", top: "25%", left: "88%", rotate: 10, scale: 1.4 },
+        { char: "👾", color: "text-[#39FF14]", top: "75%", left: "15%", rotate: -5, scale: 1.1 },
+        { char: "{ }", color: "text-white/20", top: "45%", left: "5%", rotate: 12, scale: 0.8, mono: true },
+        { char: "=>", color: "text-white/20", top: "10%", left: "80%", rotate: -8, scale: 0.9, mono: true },
+    ];
+
+    return (
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-20">
+            {decals.map((d, i) => (
+                <motion.div
+                    key={i}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ 
+                        opacity: 1, 
+                        scale: d.scale,
+                        y: ["-10px", "10px"],
+                        rotate: [d.rotate - 5, d.rotate + 5]
+                    }}
+                    transition={{ 
+                        delay: 2 + (i * 0.2), 
+                        duration: 3 + i, 
+                        repeat: Infinity, 
+                        repeatType: "mirror",
+                        ease: "easeInOut" 
+                    }}
+                    className={`absolute ${d.color} font-black text-4xl lg:text-7xl ${d.mono ? 'font-mono' : ''} drop-shadow-[5px_5px_0_rgba(0,0,0,1)] select-none opacity-40`}
+                    style={{ top: d.top, left: d.left }}
+                >
+                    {d.char}
+                </motion.div>
+            ))}
+        </div>
+    );
+};
+
 export default function HeroSequence() {
   const [stage, setStage] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -64,6 +104,7 @@ export default function HeroSequence() {
       className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden px-8 bg-transparent"
     >
       <AtmosphericDust />
+      <CartoonDecals />
       
       {/* ─── CINEMATIC STUDIO ENVIRONMENT ─── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -111,6 +152,27 @@ export default function HeroSequence() {
            className="w-24 h-1 bg-white/20 mt-16 mb-8 rounded-full"
         />
 
+        {/* CTA Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.5, duration: 0.7 }}
+          className="flex flex-wrap items-center justify-center gap-6 relative z-50 pointer-events-auto mt-4"
+        >
+          <motion.a
+            whileHover={{ scale: 1.05, rotate: 1 }}
+            whileTap={{ scale: 0.95 }}
+            href="/resume.pdf"
+            download
+            className="px-10 py-4 bg-[#FFE234] border-[4px] border-black rounded-full shadow-[6px_6px_0_0_#000] font-black uppercase italic tracking-tighter text-black flex items-center justify-center gap-3 transition-transform whitespace-nowrap"
+            style={{ fontFamily: "'Fredoka', sans-serif" }}
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+            </svg>
+            GET RESUME
+          </motion.a>
+        </motion.div>
 
       </motion.div>
 

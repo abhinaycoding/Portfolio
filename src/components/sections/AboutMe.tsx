@@ -65,7 +65,7 @@ export default function AboutMe() {
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    className="w-fit px-6 py-2 bg-[#FFE234] border-[3px] border-black rounded-full shadow-[6px_6px_0_0_#000] -rotate-2 mb-6"
+                    className="w-fit px-6 py-2 bg-[#FFE234] border-[3px] border-black rounded-full shadow-[6px_6px_0_0_#000] -rotate-2 mb-6 whitespace-nowrap"
                 >
                     <span className="text-sm font-black tracking-[0.2em] uppercase text-black block">Who am I?</span>
                 </motion.div>
@@ -161,8 +161,8 @@ function PortraitCard3D({ imageScale }: { imageScale: any }) {
     // Shine/Shadow Parallax
     const shineX = useTransform(mouseXSpring, [-0.5, 0.5], ["0%", "100%"]);
     const shineY = useTransform(mouseYSpring, [-0.5, 0.5], ["0%", "100%"]);
-    const shadowX = useTransform(mouseXSpring, [-0.5, 0.5], [30, 10]);
-    const shadowY = useTransform(mouseYSpring, [-0.5, 0.5], [30, 10]);
+    const shadowX = useTransform(mouseXSpring, [-0.5, 0.5], [40, 15]);
+    const shadowY = useTransform(mouseYSpring, [-0.5, 0.5], [40, 15]);
 
     function handleMouseMove(event: React.MouseEvent) {
         if (!cardRef.current) return;
@@ -181,59 +181,107 @@ function PortraitCard3D({ imageScale }: { imageScale: any }) {
     }
 
     return (
-        <motion.div
-            ref={cardRef}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            style={{ 
-                rotateX, 
-                rotateY, 
-                perspective: 1000,
-                boxShadow: useTransform(
-                    [shadowX, shadowY],
-                    ([sx, sy]) => `${sx}px ${sy}px 0px 0px #000`
-                )
-            }}
-            className="pop-card bg-white p-4 rotate-[-3deg] rounded-[2rem] border-[4px] border-black transition-shadow duration-300 max-w-[440px] mx-auto lg:mx-0 relative z-10 group"
-        >
-            <div className="relative rounded-2xl overflow-hidden border-[4px] border-black bg-black aspect-[3/4]">
-                <motion.div style={{ scale: imageScale }} className="w-full h-full origin-center">
-                    <img
-                        src="/portrait.png"
-                        alt="Abhinay"
-                        className="w-full h-full object-cover grayscale-[0.1] contrast-[1.1]"
-                    />
-                </motion.div>
-                
-                <motion.div 
-                    style={{ 
-                        left: shineX, 
-                        top: shineY,
-                        background: "radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 80%)" 
-                    }}
-                    className="absolute -inset-[100%] opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300 z-20"
-                />
-
-                <div className="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#fff_1.5px,transparent_1.5px)] bg-[length:12px_12px] z-10" />
-            </div>
-            
-            <div className="pt-6 pb-2 text-center relative z-20">
-                <p className="font-['Fredoka',sans-serif] font-black text-3xl text-black uppercase tracking-widest">
-                    ABHINAY 👾
-                </p>
-                <p className="text-black/60 font-bold text-sm uppercase tracking-widest mt-1">MODERN WEB DEVELOPER</p>
-            </div>
+        <div className="relative group/card">
+            {/* ── Floating 'Stickers' ── */}
+            <motion.div 
+                style={{ 
+                    x: useTransform(mouseXSpring, [-0.5, 0.5], [-40, 40]),
+                    y: useTransform(mouseYSpring, [-0.5, 0.5], [-20, 20]),
+                    rotate: -15
+                }}
+                className="absolute -top-10 -left-10 z-30 w-24 h-24 bg-[#BF5AF2] border-[4px] border-black rounded-2xl shadow-[6px_6px_0_0_#000] flex items-center justify-center pointer-events-none hidden lg:flex"
+            >
+                <span className="text-4xl">★</span>
+            </motion.div>
 
             <motion.div 
                 style={{ 
-                    x: useTransform(mouseXSpring, [-0.5, 0.5], [10, -10]),
-                    y: useTransform(mouseYSpring, [-0.5, 0.5], [10, -10])
+                    x: useTransform(mouseXSpring, [-0.5, 0.5], [40, -40]),
+                    y: useTransform(mouseYSpring, [-0.5, 0.5], [20, -20]),
+                    rotate: 12
                 }}
-                className="absolute -bottom-6 -right-6 flex items-center gap-3 px-6 py-3 bg-[#39FF14] border-[4px] border-black rounded-full shadow-[6px_6px_0_0_#000] rotate-[5deg] z-30"
+                className="absolute top-1/4 -right-16 z-30 px-4 py-2 bg-[#FF6B00] border-[4px] border-black rounded-lg shadow-[6px_6px_0_0_#000] flex items-center justify-center gap-2 pointer-events-none hidden lg:flex"
             >
-                <span className="w-3 h-3 rounded-full bg-black animate-pulse" />
-                <span className="text-sm font-black tracking-widest uppercase text-black">READY!</span>
+                <code className="text-xs font-black text-white">&lt;CODE/&gt;</code>
             </motion.div>
-        </motion.div>
+
+            <motion.div
+                ref={cardRef}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                style={{ 
+                    rotateX, 
+                    rotateY, 
+                    perspective: 1000,
+                    boxShadow: useTransform(
+                        [shadowX, shadowY],
+                        ([sx, sy]) => `${sx}px ${sy}px 0px 0px #000`
+                    )
+                }}
+                className="pop-card bg-white p-4 rotate-[-3deg] rounded-[2rem] border-[4px] border-black transition-shadow duration-300 max-w-[440px] mx-auto lg:mx-0 relative z-10 group overflow-visible"
+            >
+                {/* ── Cartoon Speech Bubble ── */}
+                <motion.div 
+                    initial={{ opacity: 0, scale: 0, x: 20 }}
+                    whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                    transition={{ delay: 1.5, type: "spring", stiffness: 400, damping: 15 }}
+                    className="absolute -top-12 -right-20 z-40 bg-white border-[4px] border-black px-4 py-2 rounded-2xl shadow-[5px_5px_0_0_#000] rotate-6 hidden lg:block"
+                >
+                    <span className="text-xs font-black text-black">VIBE-CODING! 💻</span>
+                    <div className="absolute -bottom-2 left-4 w-4 h-4 bg-white border-b-4 border-r-4 border-black rotate-45" />
+                </motion.div>
+
+                {/* Decorative Rivets */}
+                <div className="absolute top-8 left-8 w-3 h-3 bg-black/10 rounded-full z-40 border-[2px] border-black/20" />
+                <div className="absolute top-8 right-8 w-3 h-3 bg-black/10 rounded-full z-40 border-[2px] border-black/20" />
+
+                <div className="relative rounded-2xl overflow-hidden border-[4px] border-black bg-[#111] aspect-[3/4]">
+                    <motion.div style={{ scale: imageScale }} className="w-full h-full origin-center">
+                        <img
+                            src="/portrait.png"
+                            alt="Abhinay"
+                            className="w-full h-full object-cover grayscale-[0.1] contrast-[1.1]"
+                            style={{ 
+                                filter: "drop-shadow(3px 3px 0 white) drop-shadow(-3px -3px 0 white) drop-shadow(3px -3px 0 white) drop-shadow(-3px 3px 0 white)" 
+                            }}
+                        />
+                    </motion.div>
+                    
+                    {/* Holographic Shine Overlay */}
+                    <motion.div 
+                        style={{ 
+                            left: shineX, 
+                            top: shineY,
+                            background: "linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.4) 45%, rgba(0,229,255,0.2) 50%, rgba(255,60,172,0.2) 55%, transparent 100%)" 
+                        }}
+                        className="absolute -inset-[100%] opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300 z-20"
+                    />
+
+                    <div className="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#fff_1.5px,transparent_1.5px)] bg-[length:12px_12px] z-10" />
+                </div>
+                
+                <div className="pt-6 pb-2 text-center relative z-20">
+                    <p className="font-['Fredoka',sans-serif] font-black text-3xl text-black uppercase tracking-widest drop-shadow-[2px_2px_0_rgba(0,0,0,0.1)]">
+                        ABHINAY 👾
+                    </p>
+                    <div className="flex items-center justify-center gap-2 mt-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#FF3CAC]" />
+                        <p className="text-black/60 font-bold text-sm uppercase tracking-widest leading-none">MODERN WEB DEVELOPER</p>
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#00E5FF]" />
+                    </div>
+                </div>
+
+                <motion.div 
+                    style={{ 
+                        x: useTransform(mouseXSpring, [-0.5, 0.5], [15, -15]),
+                        y: useTransform(mouseYSpring, [-0.5, 0.5], [15, -15])
+                    }}
+                    className="absolute -bottom-6 -right-6 flex items-center gap-3 px-6 py-3 bg-[#39FF14] border-[4px] border-black rounded-full shadow-[8px_8px_0_0_#000] rotate-[5deg] z-30 whitespace-nowrap group-hover:scale-110 transition-transform duration-300"
+                >
+                    <span className="w-3 h-3 rounded-full bg-black animate-pulse" />
+                    <span className="text-sm font-black tracking-widest uppercase text-black">READY!</span>
+                </motion.div>
+            </motion.div>
+        </div>
     );
 }

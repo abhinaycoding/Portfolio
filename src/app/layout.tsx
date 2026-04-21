@@ -1,11 +1,13 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import Sidebar from "@/components/Sidebar";
 import SmoothScroll from "@/components/SmoothScroll";
 
 export const metadata: Metadata = {
   title: "Abhinay — Funky Product Engineer",
   description: "Product Engineer building high-energy, performant systems.",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
@@ -26,7 +28,6 @@ export default function RootLayout({
       <body suppressHydrationWarning className="bg-[#050505] text-white antialiased font-['Nunito',sans-serif]">
         <SmoothScroll>
           <div className="fixed inset-0 pointer-events-none z-[60] noise-overlay opacity-30" />
-          <Sidebar />
           <div className="relative z-10 md:pr-28 lg:pr-32">
             {children}
           </div>
