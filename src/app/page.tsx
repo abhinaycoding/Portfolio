@@ -42,10 +42,7 @@ export default function Home() {
               <VaultTransition />
 
               <AboutMe />
-              <PaperTearTransition />
-              <div className="relative -mt-[100vh] lg:-mt-[80vh] z-10">
-                <TechnicalSkills />
-              </div>
+              <TechnicalSkills />
               <FeaturedProjects />
               <Achievements />
               <Contact />
