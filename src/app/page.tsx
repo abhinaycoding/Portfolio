@@ -13,6 +13,7 @@ import { DripBackdrop } from "@/components/ui/drip-backdrop";
 import { motion, AnimatePresence } from "framer-motion";
 import PageIntro from "@/components/ui/page-intro";
 import Sidebar from "@/components/Sidebar";
+import MarioRunner from "@/components/ui/MarioRunner";
 
 export default function Home() {
   const currentYear = new Date().getFullYear();
@@ -48,6 +49,7 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
                 <AboutMe />
+                <MarioRunner />
                 <TechnicalSkills />
                 <FeaturedProjects />
                 <Achievements />

@@ -71,6 +71,47 @@ const CartoonDecals = () => {
     );
 };
 
+// --- Speed Lines Decoration ---
+const SpeedLines = () => {
+    return (
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-10 opacity-30">
+            <svg viewBox="0 0 1000 1000" className="w-full h-full">
+                <defs>
+                    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="transparent" />
+                        <stop offset="50%" stopColor="white" />
+                        <stop offset="100%" stopColor="transparent" />
+                    </linearGradient>
+                </defs>
+                {[...Array(24)].map((_, i) => (
+                    <motion.line
+                        key={i}
+                        x1="500" y1="500"
+                        x2="1500" y2="500"
+                        stroke="url(#lineGrad)"
+                        strokeWidth="2"
+                        initial={{ opacity: 0, scaleX: 0 }}
+                        animate={{ 
+                            opacity: [0, 1, 0], 
+                            scaleX: [0.5, 1.5, 0.5],
+                            x: [0, 100, 0]
+                        }}
+                        transition={{ 
+                            delay: Math.random() * 2, 
+                            duration: 2 + Math.random() * 2, 
+                            repeat: Infinity 
+                        }}
+                        style={{ 
+                            transformOrigin: "500px 500px",
+                            transform: `rotate(${i * (360 / 24)}deg)` 
+                        }}
+                    />
+                ))}
+            </svg>
+        </div>
+    );
+};
+
 export default function HeroSequence() {
   const [stage, setStage] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -105,6 +146,7 @@ export default function HeroSequence() {
     >
       <AtmosphericDust />
       <CartoonDecals />
+      <SpeedLines />
       
       {/* ─── CINEMATIC STUDIO ENVIRONMENT ─── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
