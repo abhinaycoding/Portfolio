@@ -52,7 +52,7 @@ export default function PortraitSection() {
         className="absolute inset-0 pointer-events-none z-0"
       />
 
-      <div className="relative z-10 w-full max-w-6xl px-6 flex flex-col md:flex-row items-center gap-16 md:gap-40">
+      <div className="relative z-10 w-full max-w-[1600px] mx-auto px-6 flex flex-col md:flex-row items-center gap-16 md:gap-40">
         
         {/* ─── CYBER SLICE PORTRAIT (UPGRADED) ─── */}
         <motion.div 

@@ -101,7 +101,7 @@ export default function Testimonials() {
 
   return (
     <section id="testimonials" className="section-padding relative" ref={ref}>
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[1600px] mx-auto">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}

@@ -52,7 +52,7 @@ export default function Achievements() {
       {/* Atmospheric Glow */}
       <div className="absolute w-[800px] h-[800px] bg-[#FFE234]/[0.05] rounded-full blur-[180px] pointer-events-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
 
-      <div className="max-w-[1240px] mx-auto px-6 md:px-10 lg:px-16 relative z-10">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16 relative z-10">
         
         {/* ── Header ── */}
         <div className="mb-20">
@@ -98,11 +98,11 @@ export default function Achievements() {
                 {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#000_2px,transparent_2px)] bg-[length:12px_12px]" />
                 
-                <div className="relative z-10 text-center">
-                    <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-black uppercase leading-tight italic" style={{ fontFamily: "'Fredoka', sans-serif" }}>
-                        2x Hackathon <span className="inline-block group-hover:rotate-12 transition-transform">🏆</span>
-                        <div className="w-20 h-2 bg-black mx-auto my-6 rounded-full" />
-                        <span className="text-black/50">6x Grand Finalists</span>
+                <div className="relative z-10 text-center w-full">
+                    <h2 className="inline-flex flex-col items-start text-left text-4xl md:text-6xl lg:text-7xl font-black text-black uppercase leading-tight italic" style={{ fontFamily: "'Fredoka', sans-serif" }}>
+                        <div>3x Hackathons <span className="inline-block group-hover:rotate-12 transition-transform">🏆</span></div>
+                        <div className="w-full h-2 bg-black my-6 rounded-full" />
+                        <div className="text-black/50">6x Grand Finalists</div>
                     </h2>
                 </div>
 

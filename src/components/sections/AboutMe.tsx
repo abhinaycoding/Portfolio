@@ -46,7 +46,7 @@ export default function AboutMe() {
       <div className="absolute w-[900px] h-[900px] bg-[#00E5FF]/[0.15] rounded-full blur-[180px] pointer-events-none -top-60 -right-60 z-0" />
       <div className="absolute w-[700px] h-[700px] bg-[#FF3CAC]/[0.1] rounded-full blur-[180px] pointer-events-none -bottom-60 -left-60 z-0" />
 
-      <div className="max-w-[1240px] mx-auto px-6 md:px-10 lg:px-16 relative z-10">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
 
           {/* ── LEFT: PORTRAIT ── */}

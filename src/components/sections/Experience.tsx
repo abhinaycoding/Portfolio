@@ -131,7 +131,7 @@ export default function Experience() {
 
   return (
     <section id="experience" ref={containerRef} className="relative py-48 bg-transparent overflow-hidden px-6 font-['Nunito',sans-serif]">
-      <div className="max-w-6xl mx-auto relative flex flex-col items-center">
+      <div className="max-w-[1600px] mx-auto relative flex flex-col items-center">
         
         {/* ─── SECTION HEADER ─── */}
         <div className="items-center mb-24 md:mb-32 relative z-10 w-full flex flex-col text-center px-4">

@@ -142,7 +142,7 @@ export default function TechnicalSkills() {
       <div className="absolute w-[800px] h-[800px] bg-[#FFE234]/[0.35] rounded-full blur-[180px] pointer-events-none top-[-10%] left-[-20%] z-0" />
       <div className="absolute w-[600px] h-[600px] bg-[#39FF14]/[0.25] rounded-full blur-[150px] pointer-events-none bottom-[-5%] right-[-15%] z-0" />
 
-      <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16 relative z-10">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16 relative z-10">
 
         {/* ── Header ── */}
         <div className="mb-20">

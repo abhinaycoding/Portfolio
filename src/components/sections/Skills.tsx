@@ -92,7 +92,7 @@ export default function Skills() {
   return (
     <section id="skills" className="section-padding relative" ref={ref}>
       {/* Section label */}
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[1600px] mx-auto">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -140,7 +140,7 @@ export default function Skills() {
       </div>
 
       {/* Category cards */}
-      <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-6">
+      <div className="max-w-[1600px] mx-auto grid md:grid-cols-3 gap-6">
         {skillCategories.map((cat, i) => {
           const colors = colorMap[cat.color as keyof typeof colorMap];
           return (

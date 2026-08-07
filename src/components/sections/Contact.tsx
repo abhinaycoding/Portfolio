@@ -44,7 +44,7 @@ export default function Contact() {
       {/* ─── CLEAN SUBTLE DIVIDER ─── */}
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-      <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16 relative z-10">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16 relative z-10">
         
         {/* ─── BENTO GRID (DISCIPLINED) ─── */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
