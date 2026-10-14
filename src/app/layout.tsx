@@ -28,7 +28,7 @@ export default function RootLayout({
       <body suppressHydrationWarning className="bg-[#050505] text-white antialiased font-['Nunito',sans-serif]">
         <SmoothScroll>
           <div className="fixed inset-0 pointer-events-none z-[60] noise-overlay opacity-30" />
-          <div className="relative z-10 md:pr-28 lg:pr-32">
+          <div className="relative z-10 px-3 sm:px-5 md:px-0 md:pl-8 lg:pl-12 md:pr-28 lg:pr-32">
             {children}
           </div>
         </SmoothScroll>

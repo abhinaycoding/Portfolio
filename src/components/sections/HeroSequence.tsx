@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform, useSpring, AnimatePresence, useMotionV
 import PromptingIsAllYouNeed from "@/components/ui/animated-hero-section";
 
 // --- Atmospheric Helper: Particle Field ---
-const AtmosphericDust = ({ count = 20 }) => {
+const AtmosphericDust = ({ count = 8 }) => {
   const [particles, setParticles] = useState<any[]>([]);
   useEffect(() => {
     setParticles(Array.from({ length: count }).map(() => ({
@@ -83,7 +83,7 @@ const SpeedLines = () => {
                         <stop offset="100%" stopColor="transparent" />
                     </linearGradient>
                 </defs>
-                {[...Array(24)].map((_, i) => (
+                {[...Array(12)].map((_, i) => (
                     <motion.line
                         key={i}
                         x1="500" y1="500"
@@ -103,7 +103,7 @@ const SpeedLines = () => {
                         }}
                         style={{ 
                             transformOrigin: "500px 500px",
-                            transform: `rotate(${i * (360 / 24)}deg)` 
+                            transform: `rotate(${i * (360 / 12)}deg)` 
                         }}
                     />
                 ))}
@@ -114,9 +114,21 @@ const SpeedLines = () => {
 
 export default function HeroSequence() {
   const [stage, setStage] = useState(0);
+  const [inView, setInView] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
-  
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setInView(entry.isIntersecting);
+      },
+      { threshold: 0.05 }
+    );
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     // Master Cinematic Timetable
@@ -135,18 +147,19 @@ export default function HeroSequence() {
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 60]);
   const bgHue = useTransform(scrollYProgress, [0, 0.4], ["#000", "#030408"]);
 
-  // Pro Vantage Transforms
-
-
   return (
     <motion.section
       ref={containerRef}
       style={{ perspective: "4000px" }}
       className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden px-8 bg-transparent"
     >
-      <AtmosphericDust />
-      <CartoonDecals />
-      <SpeedLines />
+      {inView && (
+        <>
+          <AtmosphericDust />
+          <CartoonDecals />
+          <SpeedLines />
+        </>
+      )}
       
       {/* ─── CINEMATIC STUDIO ENVIRONMENT ─── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">

@@ -52,7 +52,7 @@ export default function Achievements() {
       {/* Atmospheric Glow */}
       <div className="absolute w-[800px] h-[800px] bg-[#FFE234]/[0.05] rounded-full blur-[180px] pointer-events-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
 
-      <div className="max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16 relative z-10">
+      <div className="max-w-[1500px] mx-auto px-8 sm:px-12 md:px-14 lg:px-16 xl:px-20 relative z-10">
         
         {/* ── Header ── */}
         <div className="mb-20">

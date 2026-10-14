@@ -78,7 +78,7 @@ export default function FeaturedProjects() {
       <div className="absolute w-[800px] h-[800px] bg-[#BF5AF2]/[0.1] rounded-full blur-[180px] pointer-events-none -top-[10%] -right-[15%]" />
       <div className="absolute w-[600px] h-[600px] bg-[#00E5FF]/[0.08] rounded-full blur-[150px] pointer-events-none bottom-[-10%] left-[-15%]" />
 
-      <div className="max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16 relative z-10">
+      <div className="max-w-[1500px] mx-auto px-8 sm:px-12 md:px-14 lg:px-16 xl:px-20 relative z-10">
 
         {/* ── Header ── */}
         <div className="mb-24 lg:mb-40 flex flex-col md:flex-row md:items-end md:justify-between gap-12">

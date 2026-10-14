@@ -427,20 +427,38 @@ export default function PromptingIsAllYouNeed() {
 
     }
 
-    let animationFrameId: number
+    let animationFrameId: number | null = null
+    let isVisible = true
+
     const gameLoop = () => {
+      if (!isVisible) return
       updateGame()
       drawGame()
       animationFrameId = requestAnimationFrame(gameLoop)
     }
 
+    const observer = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting
+      if (isVisible) {
+        if (!animationFrameId) {
+          animationFrameId = requestAnimationFrame(gameLoop)
+        }
+      } else if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId)
+        animationFrameId = null
+      }
+    }, { threshold: 0.05 })
+
+    observer.observe(canvas)
+
     resizeCanvas()
     window.addEventListener("resize", resizeCanvas)
-    gameLoop()
+    animationFrameId = requestAnimationFrame(gameLoop)
 
     return () => {
+      observer.disconnect()
       window.removeEventListener("resize", resizeCanvas)
-      cancelAnimationFrame(animationFrameId)
+      if (animationFrameId) cancelAnimationFrame(animationFrameId)
     }
   }, [])
 

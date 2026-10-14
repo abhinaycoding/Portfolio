@@ -110,7 +110,7 @@ const Footer: React.FC<FooterProps> = ({
       ref={footerRef}
       className="bg-black text-white relative flex flex-col w-full overflow-hidden select-none border-t-[10px] border-black"
     >
-      <div className="container mx-auto flex flex-col md:flex-row justify-between w-full gap-12 pb-32 pt-16 px-6 md:px-10 lg:px-16 relative z-20">
+      <div className="max-w-[1500px] mx-auto flex flex-col md:flex-row justify-between w-full gap-12 pb-32 pt-16 px-8 sm:px-12 md:px-14 lg:px-16 xl:px-20 relative z-20">
         
         <div className="space-y-6">
           <ul className="flex flex-wrap gap-8 text-white/50">

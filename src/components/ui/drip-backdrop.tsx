@@ -13,7 +13,7 @@ export const DripBackdrop = () => {
   React.useEffect(() => {
     // Responsive Scaling: Fewer drips on mobile to preserve frame rate
     const isMobile = window.innerWidth < 768;
-    const count = isMobile ? 12 : 30; 
+    const count = isMobile ? 5 : 8; 
     
     const generated = Array.from({ length: count }).map((_, i) => ({
       id: i,
@@ -32,8 +32,8 @@ export const DripBackdrop = () => {
       {/* Central Visibility Pocket (Vignette) - High Efficiency CSS */}
       <div className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_center,rgba(5,5,5,0)_0%,rgba(5,5,5,0.4)_40%,rgba(5,5,5,0.8)_100%)]" />
       
-      {/* Optimized Blur Layer */}
-      <div className="relative w-full h-full backdrop-blur-[1px]">
+      {/* Optimized Drip Layer */}
+      <div className="relative w-full h-full">
         {drips.map((drip) => (
           <motion.div
             key={`blur-${drip.id}`}
@@ -57,8 +57,8 @@ export const DripBackdrop = () => {
           />
         ))}
         
-        {/* Secondary layer (Fewer elements on secondary layer for performance) */}
-        {drips.slice(0, 10).map((drip, i) => (
+        {/* Secondary layer (Fewer elements for high performance) */}
+        {drips.slice(0, 3).map((drip, i) => (
           <motion.div
             key={`solid-${i}`}
             initial={{ y: "-100%" }}

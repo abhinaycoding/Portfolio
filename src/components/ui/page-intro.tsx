@@ -16,8 +16,8 @@ const DECORATIONS = [
 
 const LOADING_TEXTS = [
   "BOOTING UP...",
-  "LOADING VIBES...",
-  "INITIATING CHAOS...",
+  "INITIALIZING SYSTEM...",
+  "COMPILING ASSETS...",
   "ALMOST THERE...",
   "LET'S GOOO 🚀",
 ];
@@ -189,7 +189,7 @@ export default function PageIntro({ onComplete }: { onComplete: () => void }) {
               className="text-base lg:text-xl font-black uppercase tracking-widest whitespace-nowrap"
               style={{ fontFamily: "'Fredoka', sans-serif" }}
             >
-              DEVELOPER. DESIGNER. VIBE-CODER.
+              DEVELOPER. DESIGNER. PRODUCT BUILDER.
             </span>
           </motion.div>
 

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSequence from "@/components/sections/HeroSequence";
-import VaultTransition from "@/components/ui/vault-transition";
+import TigerTearReveal from "@/components/ui/tiger-tear-reveal";
 import AboutMe from "@/components/sections/AboutMe";
 import TechnicalSkills from "@/components/sections/TechnicalSkills";
 import FeaturedProjects from "@/components/sections/FeaturedProjects";
@@ -32,13 +32,16 @@ export default function Home() {
           >
             <Navbar />
             <Sidebar />
-            <main className="relative bg-[#050505] overflow-hidden">
+            <main className="relative bg-[#050505] overflow-x-clip">
               <div className="pointer-events-none fixed inset-0 z-0">
                 <DripBackdrop />
               </div>
 
               <HeroSequence />
-              <VaultTransition />
+              <TigerTearReveal 
+                word="BUILDER" 
+                tagline="BREAK THROUGH THE NOISE" 
+              />
 
               <AboutMe />
               <TechnicalSkills />
